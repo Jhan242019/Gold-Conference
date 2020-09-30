@@ -1,0 +1,77 @@
+﻿
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1 class="h-100 badge badge-dark">Usuario: @User.Claims.FirstOrDefault().Value</h1>
+        </div>
+    </header>
+</body>
+@{
+    //List<Conferencia> conferencias = ((List<Conferencia>)ViewBag.Conferencias); // forma A
+    List<Conferencia> conferencias = ((List<Conferencia>)Model); // forma B
+}
+
+<h1>Conferencias</h1>
+
+<a href="/conferencia/create">Programar Conferencia</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Conferencista</th>
+            <th>Fecha</th>
+            <th>Titulo</th>
+            <th>Precio</th>
+            <th>Detalle</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        @*@foreach (var item in conferencias)
+            {
+                <tr>
+                    <td>
+                        <img src="@item.ImagePath" width="100" alt="Alternate Text" />
+                    </td>
+                    <td>@item.NameConf</td>
+                    <td>@item.FechaConf</td>
+                    <td>@item.TituloConf</td>
+                    <td>S/. @item.PrecioConf</td>
+                    <td>@item.DetalleConf</td>
+                    <td>
+                        <a href="/conferencia/edit?id=@item.Id">Editar</a> |
+                        <a href="/conferencia/delete?id=@item.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }*@
+    </tbody>
+</table>
+
+@*@for (int i = 0; i < conferencias.Count; i++)
+    {
+        Conferencia item = conferencias[i];
+        <tr>
+            <td>
+                <img src="@item.ImagePath" width="100" alt="Alternate Text" />
+            </td>
+            <td>@item.NameConf</td>
+            <td>@item.FechaConf</td>
+            <td>@item.TituloConf</td>
+            <td>S/. @item.PrecioConf</td>
+            <td>@item.DetalleConf</td>
+            <td>
+                <a href="/conferencia/edit?id=@item.Id">Editar</a> |
+                <a href="/conferencia/delete?id=@item.Id">Eliminar</a>
+            </td>
+        </tr>
+    }*@
+

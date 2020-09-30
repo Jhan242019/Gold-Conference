@@ -1,0 +1,56 @@
+﻿<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+
+
+@{
+    var conferencia = (Conferencia)Model;
+}
+
+<h1>Programar Conferencia</h1>
+
+<div class="row">
+    <div class="col-6 offset-3">
+        <form action="/conferencia/create" enctype="multipart/form-data" method="post">
+
+            <div class="form-group">
+                Imagen
+                <input type="file" class="form-control" required name="Image" value="@conferencia.ImagePath"/>
+                @Html.ValidationMessage("ImagePath")
+            </div>
+
+            <div class="form-group">
+                <label>Nombre de Conferencista</label>
+                <input class="form-control" placeholder="Nombre" required name="NameConf" value="@conferencia.NameConf" />
+                @Html.ValidationMessage("NameConf")
+            </div>
+
+            <div class="form-group">
+                <label>Fecha</label>
+                <input type="text" class="form-control" placeholder="Fecha" required name="FechaConf" value="@conferencia.FechaConf" />
+                @Html.ValidationMessage("FechaConf")
+            </div>
+
+            <div class="form-group">
+                <label>Título de Conferencia</label>
+                <input type="text" class="form-control" placeholder="Titulo" required name="TituloConf" value="@conferencia.TituloConf" />
+                @Html.ValidationMessage("TituloConf")
+            </div>
+
+            <div class="form-group">
+                <label>Precio</label>
+                <input type="number" class="form-control" placeholder="Precio" required name="PrecioConf" value="@conferencia.PrecioConf" />
+                @Html.ValidationMessage("PrecioConf")
+            </div>
+
+            <div class="form-group">
+                <label>Detalle de la Conferencia</label>
+                <textarea name="DetalleConf" class="form-control" required value="@conferencia.DetalleConf"></textarea>
+                @*<input type="text" class="form-control" required name="DetalleConf" value="@conferencia.DetalleConf"/>*@
+                @Html.ValidationMessage("DetalleConf")
+            </div>
+
+            <button class="btn btn-primary">Registrar</button>
+
+        </form>
+    </div>
+</div>
