@@ -9,10 +9,9 @@ namespace GoldConf.Models
     public class Conferencia
     {
         public int Id { get; set; }
-        [Required]
         public string ImagePath { get; set; }
         [Required]
-        public string NameConf { get; set; }
+        public int PonenteId { get; set; }
         [Required]
         public DateTime FechaConf { get; set; }
         [Required]
@@ -22,5 +21,9 @@ namespace GoldConf.Models
         [Required]
         public string DetalleConf { get; set; }
         public int UserId { get; set; }
+
+        public Ponente Ponentes { get; set; }
+        public List<Comprar> Compras { get; set; }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 using GoldConf.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Hosting;
 using Microsoft.VisualBasic;
 
 namespace GoldConf.Controllers
@@ -19,31 +22,19 @@ namespace GoldConf.Controllers
     {
         private readonly GoldConfContext context;
         private readonly IConfiguration configuration;
+        public IHostEnvironment hostEnv;
 
-        public AuthController(GoldConfContext context, IConfiguration configuration) : base(context)
+        public AuthController(GoldConfContext context, IHostEnvironment hostEnv, IConfiguration configuration) : base(context)
         {
             this.context = context;
             this.configuration = configuration;
+            this.hostEnv = hostEnv;
         }
-
-        [Authorize]
-        public string LoggedUserView()
-        {
-            return "El usuario Logeuado es:" + LoggedUser().Id;
-        }
-
-        [HttpGet]
-        public string Index(string input)
-        {
-            return CreateHash(input);
-        }
-
         [HttpGet]
         public IActionResult Login()
         {
             return View();
         }
-
         [HttpPost]
         public IActionResult Login(string username, string password)
         {
@@ -55,41 +46,21 @@ namespace GoldConf.Controllers
 
             if (user != null)
             {
-                if (user.Username == "admin" && user.Password == "ky0MGWs71WJ/g1qG1VjHXZBKmXsOeQslnbHr2WoMLG0=")
-                {
-                    // Autenticaremos
-                    var claims1 = new List<Claim> {
+                var claims = new List<Claim> {
                     new Claim(ClaimTypes.Name, username)
                 };
 
-                    var claimsIdentity1 = new ClaimsIdentity(claims1, "Login");
-                    var claimsPrincipal1 = new ClaimsPrincipal(claimsIdentity1);
+                var claimsIdentity = new ClaimsIdentity(claims, "Login");
+                var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
 
-                    HttpContext.SignInAsync(claimsPrincipal1);
+                HttpContext.SignInAsync(claimsPrincipal);
 
-                    return RedirectToAction("Conferencias", "Conferencia");
-                }
-                else
-                {
-                    // Autenticaremos
-                    var claims = new List<Claim> {
-                    new Claim(ClaimTypes.Name, username)
-                };
-
-                    var claimsIdentity = new ClaimsIdentity(claims, "Login");
-                    var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
-
-                    HttpContext.SignInAsync(claimsPrincipal);
-
-
-                    return RedirectToAction("Index", "Home");
-                }
+                return RedirectToAction("Index", "Home");
             }
 
             ModelState.AddModelError("Login", "Usuario o contraseña incorrectos.");
             return View();
         }
-
         [HttpGet]
         public IActionResult Logout()
         {
@@ -105,11 +76,33 @@ namespace GoldConf.Controllers
 
             return Convert.ToBase64String(hash);
         }
-
+        [HttpGet]
         public ActionResult Registrar()
         {
-            return View("Registrar");
+            return View();
+        } /* ...::: CAMBIE DESDE ACA PARA ABAJO :::... */
+        [HttpPost]
+        public ActionResult Registrar(User user, string password, string passwordConf, string email)
+        {
+            var usuarios = context.Users.ToList();
+            foreach (var item in usuarios)
+            {
+                if (item.Email == email)
+                    ModelState.AddModelError("Email", "Este email ya existe");
+            }
+
+            if (user.Password != passwordConf) // <-- para convalidar contraseña y confirmacion de contraseña
+                ModelState.AddModelError("PasswordConf", "Las contraseñas no coinciden");
+
+            if (ModelState.IsValid)
+            {
+                user.Email = email;
+                user.Password = CreateHash(password);
+                context.Users.Add(user);
+                context.SaveChanges();
+                return RedirectToAction("Login");
+            }
+            return View("Registrar", user);
         }
     }
-
 }

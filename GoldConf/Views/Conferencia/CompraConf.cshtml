@@ -1,0 +1,64 @@
+﻿@{
+    var pokebola = ((List<Conferencia>)Model);
+}
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+@if (User.Claims.FirstOrDefault() != null)
+{
+    <body>
+        <header>
+            <div class="container">
+                <h1 class="h-100 badge badge-dark">Usuario: @User.Claims.FirstOrDefault().Value</h1>
+            </div>
+        </header>
+    </body>
+}
+<h1>Mis conferencias</h1>
+
+<form class="form-inline">
+    <input class="form-control mr-sm-2 my-sm-0" type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+    <button class="btn btn-outline-success my-2" type="submit">Buscar</button>
+</form>
+
+<bir />
+<table class="table">
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Ponente</th>
+            <th>Fecha</th>
+            <th>Titulo</th>
+            <th>Precio</th>
+            <th>Detalle</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @foreach (var conferencia in ViewBag.Compras)
+            {
+                @if (item.Id == conferencia.IdConferencia)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.ImagePath" width="50" alt="Alternate Text" />
+                        </td>
+                        <td>@item.Ponentes.NomApe</td>
+                        <td>@item.FechaConf</td>
+                        <td>@item.TituloConf</td>
+                        <td>@item.PrecioConf S/.</td>
+                        <td>@item.DetalleConf</td>
+                        <td>
+                                <a href="/#">Ver conferencia</a>
+                        </td>
+                    </tr>
+                }
+            }
+        }
+    </tbody>
+</table>

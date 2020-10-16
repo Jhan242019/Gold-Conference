@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\JC\\source\\repos\\GoldConf\\GoldConf\\GoldConf.csproj": {}
+    "D:\\Visual\\Gold-Conference\\GoldConf\\GoldConf.csproj": {}
   },
   "projects": {
-    "C:\\Users\\JC\\source\\repos\\GoldConf\\GoldConf\\GoldConf.csproj": {
+    "D:\\Visual\\Gold-Conference\\GoldConf\\GoldConf.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\JC\\source\\repos\\GoldConf\\GoldConf\\GoldConf.csproj",
+        "projectUniqueName": "D:\\Visual\\Gold-Conference\\GoldConf\\GoldConf.csproj",
         "projectName": "GoldConf",
-        "projectPath": "C:\\Users\\JC\\source\\repos\\GoldConf\\GoldConf\\GoldConf.csproj",
-        "packagesPath": "C:\\Users\\JC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\JC\\source\\repos\\GoldConf\\GoldConf\\obj\\",
+        "projectPath": "D:\\Visual\\Gold-Conference\\GoldConf\\GoldConf.csproj",
+        "packagesPath": "C:\\Users\\Congregacion\\.nuget\\packages\\",
+        "outputPath": "D:\\Visual\\Gold-Conference\\GoldConf\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\JC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Congregacion\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -38,13 +38,25 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
             "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.8, )"
+            },
+            "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[3.1.8, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.1.8, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.4, )"
             }
           },
           "imports": [
@@ -65,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,10 +1,6 @@
 ﻿<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 <link rel="stylesheet" href="~/css/site.css" />
-
-
-@{
-    var conferencia = (Conferencia)Model;
-}
+@{ var conferencia = (Conferencia)Model; }
 
 <h1>Programar Conferencia</h1>
 
@@ -14,38 +10,42 @@
 
             <div class="form-group">
                 Imagen
-                <input type="file" class="form-control" required name="Image" value="@conferencia.ImagePath"/>
-                @Html.ValidationMessage("ImagePath")
+                <input type="file" class="form-control" name="Image" />
+
             </div>
 
             <div class="form-group">
                 <label>Nombre de Conferencista</label>
-                <input class="form-control" placeholder="Nombre" required name="NameConf" value="@conferencia.NameConf" />
+                <select name="PonenteId" class="form-control" placeholder="Nombre">
+                    <option value="">-- Selecciona una opcion --</option>
+                    @foreach (var item in ViewBag.Ponentes)
+                    {
+                        <option value="@item.Id">@item.NomApe</option>}
+                </select>
                 @Html.ValidationMessage("NameConf")
             </div>
 
             <div class="form-group">
                 <label>Fecha</label>
-                <input type="text" class="form-control" placeholder="Fecha" required name="FechaConf" value="@conferencia.FechaConf" />
+                <input type="datetime-local" class="form-control" placeholder="Fecha" name="FechaConf" />
                 @Html.ValidationMessage("FechaConf")
             </div>
 
             <div class="form-group">
                 <label>Título de Conferencia</label>
-                <input type="text" class="form-control" placeholder="Titulo" required name="TituloConf" value="@conferencia.TituloConf" />
+                <input type="text" class="form-control" placeholder="Titulo" name="TituloConf" />
                 @Html.ValidationMessage("TituloConf")
             </div>
 
             <div class="form-group">
                 <label>Precio</label>
-                <input type="number" class="form-control" placeholder="Precio" required name="PrecioConf" value="@conferencia.PrecioConf" />
+                <input type="number" class="form-control" placeholder="Precio" name="PrecioConf" />
                 @Html.ValidationMessage("PrecioConf")
             </div>
 
             <div class="form-group">
                 <label>Detalle de la Conferencia</label>
-                <textarea name="DetalleConf" class="form-control" required value="@conferencia.DetalleConf"></textarea>
-                @*<input type="text" class="form-control" required name="DetalleConf" value="@conferencia.DetalleConf"/>*@
+                <textarea type="text" name="DetalleConf" class="form-control"></textarea>
                 @Html.ValidationMessage("DetalleConf")
             </div>
 

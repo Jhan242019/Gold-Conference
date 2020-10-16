@@ -14,6 +14,10 @@ namespace GoldConf.Models.Maps
         {
             builder.ToTable("Conferencia");
             builder.HasKey(o => o.Id);
+
+            builder.HasOne(o => o.Ponentes).
+                WithMany(). //analizar si se va a usar el siguiente mencionado
+                HasForeignKey(o => o.PonenteId);
         }
     }
 }

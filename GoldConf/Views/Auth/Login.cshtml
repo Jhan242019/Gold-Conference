@@ -40,9 +40,9 @@
                             <img src="/img/user.png" />
                         </div>
                         <form class="col-12" action="/auth/login" method="post">
-
-                            <span>@Html.ValidationMessage("Login")</span>
-
+                            
+                                <p class="text-white">@Html.ValidationMessage("Login")</p>
+                            
                             <div class="form-group" id="user-group">
                                 <input type="text" class="form-control" placeholder="Nombre de usuario" name="Username" />
                             </div>
@@ -55,7 +55,7 @@
                             <a href="#">Recordar contrasena?</a>
                         </div>
                         <div class="col-12 forgot">
-                            <a href="/auth/Registrar"><i class=""></i> Registrarse </a>
+                            <a href="/auth/registrar"><i class=""></i> Registrarse </a>
                         </div>
                     </div>
                 </div>

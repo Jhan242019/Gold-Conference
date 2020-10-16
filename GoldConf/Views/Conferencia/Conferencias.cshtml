@@ -1,4 +1,4 @@
-﻿
+﻿@{ var conferencias = (List<Conferencia>)Model; }
 
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -12,20 +12,25 @@
         </div>
     </header>
 </body>
-@{
-    //List<Conferencia> conferencias = ((List<Conferencia>)ViewBag.Conferencias); // forma A
-    List<Conferencia> conferencias = ((List<Conferencia>)Model); // forma B
+
+<h1>Lista de conferencias</h1>
+<bir />
+@if (ViewBag.Usuario != "LanRhXXX")
+{
+    <a href="/conferencia/create">Programar Conferencia</a>
+    <bir />
 }
 
-<h1>Conferencias</h1>
+<form class="form-inline">
+    <input class="form-control mr-sm-2 my-sm-0" type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+    <button class="btn btn-outline-success my-2" type="submit">Buscar</button>
+</form>
 
-<a href="/conferencia/create">Programar Conferencia</a>
-
-<table class="table">
-    <thead>
+<table class="table table-striped">
+    <thead class="thead-dark">
         <tr>
             <th>Imagen</th>
-            <th>Conferencista</th>
+            <th>Ponente</th>
             <th>Fecha</th>
             <th>Titulo</th>
             <th>Precio</th>
@@ -35,43 +40,40 @@
     </thead>
 
     <tbody>
-
-        @*@foreach (var item in conferencias)
+        @foreach (var item in conferencias)
+        {
+            @if (item.FechaConf >= DateTime.Now)
             {
                 <tr>
                     <td>
-                        <img src="@item.ImagePath" width="100" alt="Alternate Text" />
+                        <img src="@item.ImagePath" width="50" alt="Alternate Text" />
                     </td>
-                    <td>@item.NameConf</td>
+                    <td>@item.Ponentes.NomApe</td>
                     <td>@item.FechaConf</td>
                     <td>@item.TituloConf</td>
-                    <td>S/. @item.PrecioConf</td>
+                    <td>@item.PrecioConf S/.</td>
                     <td>@item.DetalleConf</td>
+
                     <td>
-                        <a href="/conferencia/edit?id=@item.Id">Editar</a> |
-                        <a href="/conferencia/delete?id=@item.Id">Eliminar</a>
+                        @if (ViewBag.Usuario != "LanRhXXX")
+                        {
+                            <a href="/conferencia/edit?id=@item.Id">Editar | </a>
+                            <a href="/conferencia/delete?id=@item.Id"> Eliminar </a>
+                        }
+                        else
+                        {
+                            <a href="/conferencia/comprar?idF=@item.Id">Comprar</a>
+                            @*if () {
+            <a href="/conferencia/comprar?idF=@item.Id">Comprar</a>
+            }
+            else
+            {
+                <a>Comprado</a>
+            }*@
+                        }
                     </td>
                 </tr>
-            }*@
+            }
+        }
     </tbody>
 </table>
-
-@*@for (int i = 0; i < conferencias.Count; i++)
-    {
-        Conferencia item = conferencias[i];
-        <tr>
-            <td>
-                <img src="@item.ImagePath" width="100" alt="Alternate Text" />
-            </td>
-            <td>@item.NameConf</td>
-            <td>@item.FechaConf</td>
-            <td>@item.TituloConf</td>
-            <td>S/. @item.PrecioConf</td>
-            <td>@item.DetalleConf</td>
-            <td>
-                <a href="/conferencia/edit?id=@item.Id">Editar</a> |
-                <a href="/conferencia/delete?id=@item.Id">Eliminar</a>
-            </td>
-        </tr>
-    }*@
-

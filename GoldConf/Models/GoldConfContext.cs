@@ -11,6 +11,8 @@ namespace GoldConf.Models
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Conferencia> Conferencias { get; set; }
+        public DbSet<Ponente> Ponentes { get; set; }
+        public DbSet<Comprar> Compras { get; set; }
 
         public GoldConfContext(DbContextOptions<GoldConfContext> options)
            : base(options) { }
@@ -22,6 +24,8 @@ namespace GoldConf.Models
             //Esto se hace por cada tabla de base de datos
             modelBuilder.ApplyConfiguration(new UserMap());
             modelBuilder.ApplyConfiguration(new ConferenciaMap());
+            modelBuilder.ApplyConfiguration(new PonenteMap());
+            modelBuilder.ApplyConfiguration(new ComprarMap());
 
         }
     }
