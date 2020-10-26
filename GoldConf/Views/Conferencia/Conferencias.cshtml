@@ -14,17 +14,20 @@
     </header>
 </body>
 
-<h1>Lista de conferencias</h1>
+<h1 class="text-black text-center">Lista de conferencias</h1>
 <bir />
 @if (ViewBag.Usuario != "LanRhXXX")
 {
-    <a href="/conferencia/create">Programar Conferencia</a>
+    <a href="/conferencia/create" class="btn btn-outline-dark">Programar Conferencia</a>
     <bir />
 }
 
 <form class="form-inline">
-    <input class="form-control mr-sm-2 my-sm-0" type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
-    <button class="btn btn-outline-success my-2" type="submit">Buscar</button>
+    <div class="form-group mb-2">
+        <input class="form-control" style="background-color:transparent; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+    </div>
+    
+    <button class="form-control btn btn-outline-dark btn-sm" type="button">Buscar</button>
 </form>
 
 <table class="table table-striped">
