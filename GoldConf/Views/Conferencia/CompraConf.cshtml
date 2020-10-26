@@ -1,14 +1,13 @@
-﻿@{
-    var pokebola = ((List<Conferencia>)Model);
-}
+﻿@{ var pokebola = ((List<Conferencia>)Model); }
 
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Conf.css">
 </head>
 
-@if (User.Claims.FirstOrDefault() != null)
-{
+    @if (User.Claims.FirstOrDefault() != null)
+    {
     <body>
         <header>
             <div class="container">
@@ -16,49 +15,47 @@
             </div>
         </header>
     </body>
-}
-<h1>Mis conferencias</h1>
+    }
+    <h1 class="text-black text-center">Mis conferencias</h1>
 
-<form class="form-inline">
-    <input class="form-control mr-sm-2 my-sm-0" type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
-    <button class="btn btn-outline-success my-2" type="submit">Buscar</button>
-</form>
+    <form class="form-inline">
+        <input class="form-control mr-sm-2 my-sm-0 text-black" style="background-color:transparent; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+        <button class="btn btn btn-outline-dark" type="button">Buscar</button>
+    </form>
 
-<bir />
-<table class="table">
-    <thead>
-        <tr>
-            <th>Imagen</th>
-            <th>Ponente</th>
-            <th>Fecha</th>
-            <th>Titulo</th>
-            <th>Precio</th>
-            <th>Detalle</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            @foreach (var conferencia in ViewBag.Compras)
+    <bir />
+    <table class="table table-dark ">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Ponente</th>
+                <th>Fecha</th>
+                <th>Titulo</th>
+                <th>Precio</th>
+                <th>Detalle</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
             {
-                @if (item.Id == conferencia.IdConferencia)
-                {
-                    <tr>
-                        <td>
-                            <img src="@item.ImagePath" width="50" alt="Alternate Text" />
-                        </td>
-                        <td>@item.Ponentes.NomApe</td>
-                        <td>@item.FechaConf</td>
-                        <td>@item.TituloConf</td>
-                        <td>@item.PrecioConf S/.</td>
-                        <td>@item.DetalleConf</td>
-                        <td>
-                                <a href="/#">Ver conferencia</a>
-                        </td>
-                    </tr>
-                }
-            }
-        }
-    </tbody>
-</table>
+@foreach (var conferencia in ViewBag.Compras)
+{
+@if (item.Id == conferencia.IdConferencia)
+{
+<tr>
+    <td>
+        <img src="@item.ImagePath" width="50" alt="Alternate Text" />
+    </td>
+    <td>@item.Ponentes.NomApe</td>
+    <td>@item.FechaConf</td>
+    <td>@item.TituloConf</td>
+    <td>@item.PrecioConf S/.</td>
+    <td>@item.DetalleConf</td>
+    <td>
+        <a href="/#">Ver conferencia</a>
+    </td>
+</tr>
+}}}
+        </tbody>
+    </table>

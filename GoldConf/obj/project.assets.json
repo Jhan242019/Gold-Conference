@@ -8808,19 +8808,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Congregacion\\.nuget\\packages\\": {}
+    "C:\\Users\\JC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Visual\\Gold-Conference\\GoldConf\\GoldConf.csproj",
+      "projectUniqueName": "C:\\Users\\JC\\Downloads\\Gold-Conference-master (1)\\Gold-Conference-master\\GoldConf\\GoldConf.csproj",
       "projectName": "GoldConf",
-      "projectPath": "D:\\Visual\\Gold-Conference\\GoldConf\\GoldConf.csproj",
-      "packagesPath": "C:\\Users\\Congregacion\\.nuget\\packages\\",
-      "outputPath": "D:\\Visual\\Gold-Conference\\GoldConf\\obj\\",
+      "projectPath": "C:\\Users\\JC\\Downloads\\Gold-Conference-master (1)\\Gold-Conference-master\\GoldConf\\GoldConf.csproj",
+      "packagesPath": "C:\\Users\\JC\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\JC\\Downloads\\Gold-Conference-master (1)\\Gold-Conference-master\\GoldConf\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Congregacion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8883,7 +8883,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }
