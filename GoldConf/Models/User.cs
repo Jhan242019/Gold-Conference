@@ -11,6 +11,7 @@ namespace GoldConf.Models
         public int Id { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public string NomApe { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
         [EmailAddress]
         public string Email { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]

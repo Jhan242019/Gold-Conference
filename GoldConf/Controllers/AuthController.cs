@@ -82,13 +82,15 @@ namespace GoldConf.Controllers
             return View();
         } /* ...::: CAMBIE DESDE ACA PARA ABAJO :::... */
         [HttpPost]
-        public ActionResult Registrar(User user, string password, string passwordConf, string email)
+        public ActionResult Registrar(User user, string password, string passwordConf, string email, string username)
         {
             var usuarios = context.Users.ToList();
             foreach (var item in usuarios)
             {
                 if (item.Email == email)
                     ModelState.AddModelError("Email", "Este email ya existe");
+                if (item.Username == username)
+                    ModelState.AddModelError("Username", "Este usuario ya existe");
             }
 
             if (user.Password != passwordConf) // <-- para convalidar contraseña y confirmacion de contraseña

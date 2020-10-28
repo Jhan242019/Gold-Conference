@@ -6,78 +6,91 @@
     <link rel="stylesheet" href="~/css/Conf.css">
 </head>
 
-<body>
-    <header>
-        <div class="container">
-            <h1 class="h-100 badge badge-dark">Usuario: @User.Claims.FirstOrDefault().Value</h1>
-        </div>
-    </header>
-</body>
-
-<h1 class="text-black text-center">Lista de conferencias</h1>
-<bir />
-@if (ViewBag.Usuario != "LanRhXXX")
+@*@if (User.Claims.FirstOrDefault() != null)
 {
-    <a href="/conferencia/create" class="btn btn-outline-dark">Programar Conferencia</a>
-    <bir />
-}
+    <body>
+        <header>
+            <div class="container">
+                <h1 class="h-100 badge badge-dark">Usuario: @User.Claims.FirstOrDefault().Value</h1>
+            </div>
+        </header>
+    </body>
+}*@
 
-<form class="form-inline">
-    <div class="form-group mb-2">
-        <input class="form-control" style="background-color:transparent; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+
+<body class="index">
+
+    <div class="barra">
+        <div class="contenedor clearfix">
+            <div class="logo">
+                <a href="/Home">
+                    <img src="/img/LOGO.png" alt="logo">
+                </a>
+            </div>
+
+            <div class="menu-movil">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="navegacion-principal clearfix">
+                <a href="/conferencia/CompraConf">Mis Conferencias</a>
+                <a href="#">Calendario</a>
+                <a href="#">Invitados</a>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Login">Login</a>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Logout">LogOut</a>
+                    <a href="/#">@User.Claims.FirstOrDefault().Value</a>
+                }
+            </nav>
+        </div>
+        <!--.contenedor-->
     </div>
-    
-    <button class="form-control btn btn-outline-dark btn-sm" type="button">Buscar</button>
-</form>
+    <!--.barra-->
+    <!--.Contenido-->
 
-<table class="table table-striped">
-    <thead class="thead-dark">
-        <tr>
-            <th>Imagen</th>
-            <th>Ponente</th>
-            <th>Fecha</th>
-            <th>Titulo</th>
-            <th>Precio</th>
-            <th>Detalle</th>
-            <th></th>
-        </tr>
-    </thead>
+    <form class="form-inline">
+        <div class="form-group mb-2">
+            <input class="form-control" style="background-color:transparent; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+        </div>
+        <button class="form-control btn btn-outline-dark btn-sm" type="button">Buscar</button>
+    </form>
 
-    <tbody>
-        @foreach (var item in conferencias)
-        {
-            @if (item.FechaConf >= DateTime.Now)
-            {
-                <tr>
-                    <td>
-                        <img src="@item.ImagePath" width="50" alt="Alternate Text" />
-                    </td>
-                    <td>@item.Ponentes.NomApe</td>
-                    <td>@item.FechaConf</td>
-                    <td>@item.TituloConf</td>
-                    <td>@item.PrecioConf S/.</td>
-                    <td>@item.DetalleConf</td>
+    @if (ViewBag.Usuario != "LanRhXXX")
+    {
+        <a href="/conferencia/create" class="btn btn-outline-dark">Programar Conferencia</a>
+        <bir />
+    }
 
-                    <td>
-                        @if (ViewBag.Usuario != "LanRhXXX")
-                        {
-                            <a href="/conferencia/edit?id=@item.Id">Editar | </a>
-                            <a href="/conferencia/delete?id=@item.Id"> Eliminar </a>
-                        }
-                        else
-                        {
-                            <a href="/conferencia/comprar?idF=@item.Id">Comprar</a>
-                            @*if () {
-            <a href="/conferencia/comprar?idF=@item.Id">Comprar</a>
-            }
-            else
-            {
-                <a>Comprado</a>
-            }*@
-                        }
-                    </td>
-                </tr>
-            }
-        }
-    </tbody>
-</table>
+    <section class="precios seccion">
+        <h2>Conferencias</h2>
+        <div class="contenedor">
+            <ul class="lista-precios clearfix">
+                @foreach (var item in conferencias)
+                {
+                    @if (item.FechaConf >= DateTime.Now)
+                    {
+                        <li>
+                            <div class="tabla-precio">
+                                <h3>@item.TituloConf</h3>
+                                <div class="course-card--image-wrapper--Sxd90"> <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x"> </div>
+                                <div> __________________________</div>
+                                <ul>
+                                    <li><i class="fa fa-user" aria-hidden="true"></i> @item.Ponentes.NomApe</li>
+                                    <li><i class="fa fa-calendar" aria-hidden="true"></i> @item.FechaConf</li>
+                                    @*<li>@item.DetalleConf</li>*@
+                                </ul>
+                                <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
+                            </div>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </section>
+</body>

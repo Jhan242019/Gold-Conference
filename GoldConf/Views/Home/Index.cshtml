@@ -35,7 +35,7 @@
 
                 <div class="informacion-evento">
                     <div class="clearfix">
-                        <p class="fecha"><i class="fa fa-calendar" aria-hidden="true"></i> 15-Oct-2020</p>
+                        <p class="fecha"><i class="fa fa-calendar" aria-hidden="true"></i> @DateTime.Now</p>
                         <p class="ciudad"><i class="fa fa-map-marker" aria-hidden="true"></i> Cajamarca, PERÚ</p>
                     </div>
 
@@ -55,7 +55,7 @@
     <div class="barra">
         <div class="contenedor clearfix">
             <div class="logo">
-                <a href="/Conferencia">
+                <a href="#">
                     <img src="img/LOGO.png" alt="logo">
                 </a>
             </div>
@@ -70,7 +70,15 @@
                 <a href="conferencia/CompraConf">Mis Conferencias</a>
                 <a href="#">Calendario</a>
                 <a href="#">Invitados</a>
-                <a href="/Auth/Login">Login</a>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Login">Login</a>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Logout">LogOut</a>
+                    <a href="/#">@User.Claims.FirstOrDefault().Value</a>
+                }
             </nav>
         </div>
         <!--.contenedor-->
@@ -364,52 +372,6 @@
         <!-- END lista-invitados -->
     </section>
     <!-- END .invitados -->
-
-
-    <section class="precios seccion">
-        <h2>Precios</h2>
-        <div class="contenedor">
-            <ul class="lista-precios clearfix">
-                <li>
-                    <div class="tabla-precio">
-                        <h3>Pase por un día</h3>
-                        <p class="numero">S/. 30</p>
-                        <ul>
-                            <li>Tips</li>
-                            <li>Todas las conferencias</li>
-                            <li>Todos los talleres</li>
-                        </ul>
-                        <a href="#" class="button hollow">Comprar</a>
-                    </div>
-                </li>
-                <li>
-                    <div class="tabla-precio">
-                        <h3>Pase por cuatro días</h3>
-                        <p class="numero">S/. 100</p>
-                        <ul>
-                            <li>Tips</li>
-                            <li>Todas las conferencias</li>
-                            <li>Todos los talleres</li>
-                        </ul>
-                        <a href="#" class="button">Comprar</a>
-                    </div>
-                </li>
-
-                <li>
-                    <div class="tabla-precio">
-                        <h3>Pase por una semana</h3>
-                        <p class="numero">S/. 140</p>
-                        <ul>
-                            <li>Tips</li>
-                            <li>Todas las conferencias</li>
-                            <li>Todos los talleres</li>
-                        </ul>
-                        <a href="#" class="button hollow">Comprar</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </section>
 
     <footer class="site-footer">
         <div class="contenedor clearfix">

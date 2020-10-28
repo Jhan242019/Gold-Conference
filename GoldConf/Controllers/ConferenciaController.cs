@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using GoldConf.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -168,22 +166,22 @@ namespace GoldConf.Controllers
         {
             var compra = _context.Compras.ToList();
 
-            foreach (var item in compra)
-            {
-                if (item.IdConferencia != idF)
-                {
+            //foreach (var item in compra)
+            //{
+            //    if (item.IdConferencia != idF)
+            //    {
 
                     comprar.IdUser = LoggedUser().Id;
                     comprar.IdConferencia = idF;
 
-                    Console.WriteLine("Conferencia : " + item.IdConferencia);
+                    //Console.WriteLine("Conferencia : " + item.IdConferencia);
 
                     _context.Compras.Add(comprar);
                     _context.SaveChanges();
 
-                    return RedirectToAction("Conferencias");
-                }
-            }
+            //        return RedirectToAction("Conferencias");
+            //    }
+            //}
 
             return RedirectToAction("Conferencias");
         }
@@ -193,8 +191,6 @@ namespace GoldConf.Controllers
         {
             var compras = _context.Ponentes.ToList();
 
-            //user.Id = LoggedUser().Id;
-            //var pokemones = context.Elementos.ToList();
             ViewBag.Compras = _context.Compras.ToList().Where(o => o.IdUser == LoggedUser().Id);
 
             ViewBag.Buscar = search;
