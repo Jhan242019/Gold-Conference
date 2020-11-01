@@ -880,3 +880,4 @@ D:\Proyecto DIARS\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.dll
 D:\Proyecto DIARS\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.pdb
 D:\Proyecto DIARS\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.genruntimeconfig.cache
 D:\Proyecto DIARS\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Registrar.cshtml.g.cs
+D:\Proyecto DIARS\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Ponente.cshtml.g.cs

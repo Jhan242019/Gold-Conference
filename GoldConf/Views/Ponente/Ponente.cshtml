@@ -1,5 +1,114 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿@{ var ponentes = (List<Ponente>)Model; }
+
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/Conf.css">
+    @*<link rel="stylesheet" href="~/css/Nosotros.css"/>*@
+</head>
+
+
+
+@*@if (User.Claims.FirstOrDefault() != null)
+    {
+        <body>
+            <header>
+                <div class="container">
+                    <h1 class="h-100 badge badge-dark">Usuario: @User.Claims.FirstOrDefault().Value</h1>
+                </div>
+            </header>
+        </body>
+    }*@
+
+
+<body class="index">
+
+    <div class="barra">
+        <div class="contenedor clearfix">
+            <div class="logo">
+                <a href="/Home">
+                    <img src="/img/LOGO.png" alt="logo">
+                </a>
+            </div>
+
+            <div class="menu-movil">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="navegacion-principal clearfix">
+                <a href="/conferencia/CompraConf">Mis Conferencias</a>
+                <a href="#">Calendario</a>
+                <a href="#">Invitados</a>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Login">Login</a>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Logout">LogOut</a>
+                    <a href="/#">@User.Claims.FirstOrDefault().Value</a>
+                }
+            </nav>
+        </div>
+        <!--.contenedor-->
+    </div>
+    <!--.barra-->
+    <!--.Contenido-->
+
+    <form class="form-inline">
+        <div class="form-group mb-2">
+            <input class="form-control" style="background-color:transparent; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+        </div>
+        <button class="form-control btn btn-outline-dark btn-sm" type="button">Buscar</button>
+    </form>
+
+    @if (ViewBag.Usuario != "LanRhXXX")
+    {
+        <a href="/ponente/registrar" class="btn btn-outline-dark"> Registrar Ponente</a>
+    }
+
+
+
+    <section class="invitados contenedor seccion">
+        <h2>Nuestros conferencistas</h2>
+        <ul class="lista-invitados clearfix">
+            @foreach (var item in ponentes)
+            {
+                <li>
+                    <div class="invitado">
+                        <a class="invitado-info" href="#@item.Id">
+                            <img src="@item.Imagen" alt="Imagen invitado">
+                            <p>@item.NomApe</p>
+                        </a>
+                    </div>
+                    <!-- END .invitado -->
+                </li>
+
+                <div style="display:none;">
+
+                    <div class="invitado-info" id="@item.Id">
+                        <h2>@item.NomApe</h2>
+                        <img src="@item.Imagen" alt="">
+                        <h4>Título profesional</h4>
+                        <p>@item.NomApe</p>
+
+                        <h4>Educación y Logros</h4>
+                        <p>Graduado en la Universidad Nacional de Ingeniería, realizo una maestría en Ingeniería de Sistemas en la UPC, certificado en desarrollo de software, uso de herramientas informáticas en la industria.</p>
+
+                        <h4>Contactos</h4>
+                        <p>@item.Telefono</p>
+                        <p>@item.Email</p>
+
+                    </div>
+
+                </div>
+            }
+        </ul>
+        <!-- END lista-invitados -->
+    </section>
+    <!-- END .invitados -->
+
+</body>
+

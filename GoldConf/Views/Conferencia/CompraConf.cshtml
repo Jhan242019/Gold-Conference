@@ -63,7 +63,10 @@
                             <li>
                                 <div class="tabla-precio">
                                     <h3>@item.TituloConf</h3>
-                                    <div class="course-card--image-wrapper--Sxd90"> <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x"> </div>
+                                    <a class="course-card--image-wrapper--Sxd90" href="#/@item.Id">
+                                        <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x">
+                                    </a>
+                                    @*<div class="course-card--image-wrapper--Sxd90"> <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x"> </div>*@
                                     <div> __________________________</div>
                                     <ul>
                                         <li><i class="fa fa-user" aria-hidden="true"></i> @item.Ponentes.NomApe</li>
@@ -73,6 +76,25 @@
                                     <a href="/#" class="button hollow">Acceder a conferencia</a>
                                 </div>
                             </li>
+
+                            @*<div style="display:none;">
+
+                                <div class="invitado-info" id="@item.Id">
+                                    <h2>@item.NomApe</h2>
+                                    <img src="@item.Imagen" alt="">
+                                    <h4>Título profesional</h4>
+                                    <p>@item.NomApe</p>
+
+                                    <h4>Educación y Logros</h4>
+                                    <p>Graduado en la Universidad Nacional de Ingeniería, realizo una maestría en Ingeniería de Sistemas en la UPC, certificado en desarrollo de software, uso de herramientas informáticas en la industria.</p>
+
+                                    <h4>Contactos</h4>
+                                    <p>@item.Telefono</p>
+                                    <p>@item.DetalleConf</p>
+
+                                </div>
+
+                            </div>*@
                         }
                     }
                 }

@@ -9,6 +9,7 @@ namespace GoldConf.Models
     public class Ponente
     {
         public int Id { get; set; }
+        public string Imagen { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
         public string NomApe { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
@@ -18,7 +19,7 @@ namespace GoldConf.Models
         public string Email { get; set; }
         [Required(ErrorMessage = "Este campo es obligatorio")]
         [RegularExpression(@"[0-9]+")]
+        [MinLength(7)]
         public string Telefono { get; set; }
-        public string Imagen { get; set; }
     }
 }

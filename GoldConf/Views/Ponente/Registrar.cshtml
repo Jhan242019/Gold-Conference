@@ -1,60 +1,45 @@
-﻿
-<!--<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+﻿<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/site.css" />
+@{ var ponente = (Ponente)Model; }
 
-    <link rel="apple-touch-icon" href="apple-touch-icon.png">-->
-    <!-- Place favicon.ico in the root directory -->
+<h1>Registrar Ponente</h1>
 
-    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Oswald|PT+Sans" rel="stylesheet">
+<div class="row">
+    <div class="col-6 offset-3">
+        <form action="/ponente/registrar" enctype="multipart/form-data" method="post">
 
-    <link rel="stylesheet" href="/css/colorbox.css">
+            <div class="form-group">
+                Imagen
+                <input type="file" class="form-control" name="Image" />
 
-    <link rel="stylesheet" href="/css/Nosotros.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-</head>-->
-
-
-<body class="index">
-
-    <header class="site-header">
-        <div class="hero">
-        </div>
-        <!--.hero-->
-    </header>
-
-    <div class="barra">
-        <div class="contenedor clearfix">
-            <div class="logo">
-                <a href="#">
-                    <img src="img/LOGO.png" alt="logo">
-                </a>
             </div>
 
-            <div class="menu-movil">
-                <span></span>
-                <span></span>
-                <span></span>
+            <div class="form-group">
+                <label>Nombres y Apellidos</label>
+                <input type="text" class="form-control" placeholder="Nombres y Apellidos" name="NomApe" />
+                @Html.ValidationMessage("NomApe")
             </div>
 
-            <nav class="navegacion-principal clearfix">
-                <a href="conferencia/CompraConf">Mis Conferencias</a>
-                <a href="#">Calendario</a>
-                <a href="#">Invitados</a>
-                <a href="/Auth/Logout">LogOut</a>
-                <a href="/Auth/Login">Login</a>
-            </nav>
-        </div>
-        <!--.contenedor-->
+            <div class="form-group">
+                <label>Especialidad</label>
+                <input type="text" class="form-control" placeholder="Especialidad" name="Especialidad" />
+                @Html.ValidationMessage("Especialidad")
+            </div>
+
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" placeholder="Email" name="email" />
+                @Html.ValidationMessage("Email")
+            </div>
+
+            <div class="form-group">
+                <label>Telefono</label>
+                <input type="text" class="form-control" placeholder="Telefono" name="telefono" />
+                @Html.ValidationMessage("Telefono")
+            </div>
+
+            <button class="btn btn-primary">Registrar</button>
+
+        </form>
     </div>
-    <!--.barra-->
-
-
-
-</body>
+</div>
