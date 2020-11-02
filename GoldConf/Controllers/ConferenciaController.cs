@@ -14,7 +14,7 @@ namespace GoldConf.Controllers
     public class ConferenciaController : BaseController
     {
 
-        private GoldConfContext _context;
+        private readonly GoldConfContext _context;
         public IHostEnvironment _hostEnv;
 
         public ConferenciaController(GoldConfContext context, IHostEnvironment hostEnv) : base(context)
@@ -31,9 +31,16 @@ namespace GoldConf.Controllers
             ViewBag.Buscar = search;
 
             ViewBag.Ponentes = _context.Ponentes.ToList();
+
             var conferencias = _context.Conferencias
                 .Include(o => o.Ponentes)
                 .ToList();
+
+            //ViewBag.Compra = _context.Compras.
+            //    Where(o => o.IdUser == LoggedUser().Id).
+            //    ToList();
+
+            ViewBag.IdUser = LoggedUser().Id;
 
             if (!string.IsNullOrEmpty(search))
             {
@@ -80,11 +87,9 @@ namespace GoldConf.Controllers
                         var basePath = _hostEnv.ContentRootPath + @"\wwwroot";
                         var ruta = @"\files\" + image.FileName;
 
-                        using (var strem = new FileStream(basePath + ruta, FileMode.Create))
-                        {
-                            image.CopyTo(strem);
-                            conferencia.ImagePath = ruta;
-                        }
+                        using var strem = new FileStream(basePath + ruta, FileMode.Create);
+                        image.CopyTo(strem);
+                        conferencia.ImagePath = ruta;
                     }
                     _context.Conferencias.Add(conferencia);
                     _context.SaveChanges();
@@ -164,30 +169,32 @@ namespace GoldConf.Controllers
         [HttpGet]
         public ActionResult Comprar(Comprar comprar, int idF)
         {
-            var compra = _context.Compras.ToList();
+            var compra = _context.Compras.
+                ToList();
 
-            //foreach (var item in compra)
-            //{
-            //    if (item.IdConferencia != idF)
-            //    {
+            foreach (var item in compra)
+            {
+                if (item.IdUser == LoggedUser().Id && item.IdConferencia == idF)
+                {
+                    TempData["COMPRA"] = "Esta conferencia ya ha sido comprada";
+                    ModelState.AddModelError("Error","Conferencia ya comprada");
+                }
+            }
+            if (ModelState.IsValid)
+            {
+                comprar.IdUser = LoggedUser().Id;
+                comprar.IdConferencia = idF;
+                _context.Compras.Add(comprar);
+                _context.SaveChanges();
 
-                    comprar.IdUser = LoggedUser().Id;
-                    comprar.IdConferencia = idF;
-
-                    //Console.WriteLine("Conferencia : " + item.IdConferencia);
-
-                    _context.Compras.Add(comprar);
-                    _context.SaveChanges();
-
-            //        return RedirectToAction("Conferencias");
-            //    }
-            //}
+                return RedirectToAction("Conferencias");
+            }
 
             return RedirectToAction("Conferencias");
         }
 
         [Authorize]
-        public ActionResult CompraConf(Comprar comprar, string search)
+        public ActionResult CompraConf(string search)
         {
             var compras = _context.Ponentes.ToList();
 

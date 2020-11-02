@@ -1,4 +1,7 @@
-﻿@{ var conferencias = (List<Conferencia>)Model; }
+﻿@{
+    var conferencias = (List<Conferencia>)Model;
+    //var compras = (List<Comprar>)ViewBag.Compra;
+}
 
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
@@ -7,15 +10,16 @@
 </head>
 
 @*@if (User.Claims.FirstOrDefault() != null)
-{
-    <body>
-        <header>
-            <div class="container">
-                <h1 class="h-100 badge badge-dark">Usuario: @User.Claims.FirstOrDefault().Value</h1>
-            </div>
-        </header>
-    </body>
-}*@
+    {
+        <body>
+            <header>
+                <div class="container">
+                    <h1 class="h-100 badge badge-dark">Usuario: @User.Claims.FirstOrDefault().Value</h1>
+                </div>
+            </header>
+        </body>
+    }*@
+
 
 
 <body class="index">
@@ -37,7 +41,7 @@
             <nav class="navegacion-principal clearfix">
                 <a href="/conferencia/CompraConf">Mis Conferencias</a>
                 <a href="#">Calendario</a>
-                <a href="#">Invitados</a>
+                <a href="/Ponente/ponente">Invitados</a>
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <a href="/Auth/Login">Login</a>
@@ -70,6 +74,13 @@
     <section class="precios seccion">
         <h2>Conferencias</h2>
         <div class="contenedor">
+            @if (TempData["COMPRA"] != null)
+            {
+                <div class="alert alert-danger">
+                    @TempData["COMPRA"]
+
+                </div>
+            }
             <ul class="lista-precios clearfix">
                 @foreach (var item in conferencias)
                 {
@@ -90,7 +101,17 @@
                                     <li><i class="fa fa-calendar" aria-hidden="true"></i> @item.FechaConf</li>
                                     @*<li>@item.DetalleConf</li>*@
                                 </ul>
-                                <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
+                                @*@foreach (var compra in compras)
+                                {
+                                    @if (compra.IdConferencia == item.Id && compra.IdUser == ViewBag.IdUser)
+                                    {
+                                        <a href="/#" class="button hollow">Conferencia comprada</a>
+                                }
+                                else if (compra.IdConferencia != item.Id && compra.IdUser != ViewBag.IdUser)
+                                {*@
+                                    <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
+                                @*}
+                            }*@
                             </div>
                         </li>
                     }

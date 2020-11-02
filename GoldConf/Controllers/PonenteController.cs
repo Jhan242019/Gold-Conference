@@ -15,7 +15,7 @@ namespace GoldConf.Controllers
     [Authorize]
     public class PonenteController : BaseController
     {
-        private GoldConfContext _context;
+        private readonly GoldConfContext _context;
         public IHostEnvironment _hostEnv;
 
         public PonenteController(GoldConfContext context, IHostEnvironment hostEnv) : base(context)
@@ -75,12 +75,8 @@ namespace GoldConf.Controllers
                 {
                     if (item.Email == email)
                         ModelState.AddModelError("Email", "Este email ya existe");
-                    else
-                        item.Email = email;
                     if (item.Telefono == telefono)
                         ModelState.AddModelError("Telefono", "Este numero ya existe");
-                    else
-                        item.Telefono = telefono;
                 }
                 if (ModelState.IsValid)
                 {
@@ -89,14 +85,10 @@ namespace GoldConf.Controllers
                         var basePath = _hostEnv.ContentRootPath + @"\wwwroot";
                         var ruta = @"\Ponentes\" + image.FileName;
 
-                        using (var strem = new FileStream(basePath + ruta, FileMode.Create))
-                        {
-                            image.CopyTo(strem);
-                            ponente.Imagen = ruta;
-                        }
+                        using var strem = new FileStream(basePath + ruta, FileMode.Create);
+                        image.CopyTo(strem);
+                        ponente.Imagen = ruta;
                     }
-                    ponente.Email = email;
-                    ponente.Telefono = telefono;
                     _context.Ponentes.Add(ponente);
                     _context.SaveChanges();
                     return RedirectToAction("Ponente");
