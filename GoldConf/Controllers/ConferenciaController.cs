@@ -51,6 +51,23 @@ namespace GoldConf.Controllers
             return View("Conferencias",conferencias);
         }
 
+        public ActionResult Detalle(int idConferencia)
+        {
+            if (LoggedUser().Username != "LanRhXXX")
+                ViewBag.Usuario = "LanRhXXX";
+
+            ViewBag.Ponentes = _context.Ponentes.ToList();
+
+            var conferencias = _context.Conferencias
+                .Where(o => o.Id == idConferencia)
+                .Include(o => o.Ponentes)
+                .ToList();
+
+            ViewBag.IdUser = LoggedUser().Id;
+
+            return View(conferencias);
+        }
+
         [HttpGet]
         public ActionResult Create()
         {

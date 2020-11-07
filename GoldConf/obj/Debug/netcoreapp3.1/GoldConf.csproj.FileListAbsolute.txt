@@ -1043,3 +1043,5 @@ D:\Visual\T4_PROYECTO\GoldConf\obj\Debug\netcoreapp3.1\staticwebassets\GoldConf.
 D:\Visual\T4_PROYECTO\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.dll
 D:\Visual\T4_PROYECTO\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.pdb
 D:\Visual\T4_PROYECTO\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.genruntimeconfig.cache
+D:\Visual\T4_PROYECTO\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Detalle.cshtml.g.cs
+D:\Visual\T4_PROYECTO\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Detalle.cshtml.g.cs

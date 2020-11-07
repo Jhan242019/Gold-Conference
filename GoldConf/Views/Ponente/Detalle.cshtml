@@ -1,0 +1,76 @@
+﻿@{ var ponentes = (List<Ponente>)Model; }
+
+
+
+
+
+<body class="index">
+
+    <div class="barra">
+        <div class="contenedor clearfix">
+            <div class="logo">
+                <a href="/Home">
+                    <img src="/img/LOGO.png" alt="logo">
+                </a>
+            </div>
+
+            <div class="menu-movil">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="navegacion-principal clearfix">
+                <a href="/conferencia/CompraConf">Mis Conferencias</a>
+                <a href="#">Calendario</a>
+                <a href="#">Invitados</a>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Login">Login</a>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Logout">LogOut</a>
+                    <a href="/#">@User.Claims.FirstOrDefault().Value</a>
+                }
+            </nav>
+        </div>
+        <!--.contenedor-->
+    </div>
+    <!--.barra-->
+    <!--.Contenido-->
+
+
+    @if (ViewBag.Usuario != "LanRhXXX")
+    {
+        <a href="/ponente/registrar" class="btn btn-outline-dark"> Editar Ponente</a>
+    }
+
+
+
+    <section class="invitados contenedor seccion">
+
+        @foreach (var item in ponentes)
+        {
+            <div class="invitado-info">
+                <h2>@item.NomApe</h2>
+                <img src="@item.Imagen" alt="">
+                <h3>Título profesional</h3>
+                <p>@item.Especialidad</p>
+
+                <h3>Educación y Logros</h3>
+                <p>Graduado en la Universidad Nacional de Ingeniería, realizo una maestría en Ingeniería de Sistemas en la UPC, certificado en desarrollo de software, uso de herramientas informáticas en la industria.</p>
+
+                <h3>Contactos</h3>
+                <p>@item.Telefono</p>
+                <p>@item.Email</p>
+
+            </div>
+            <!-- END .invitado -->
+        }
+        <!-- END lista-invitados -->
+    </section>
+    <!-- END .invitados -->
+
+</body>
+

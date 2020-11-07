@@ -90,7 +90,7 @@
                             <div class="tabla-precio">
                                 <h3>@item.TituloConf</h3>
 
-                                <a class="course-card--image-wrapper--Sxd90" href="#/@item.Id">
+                                <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Id">
                                     <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x">
                                 </a>
 
@@ -99,19 +99,8 @@
                                 <ul>
                                     <li><i class="fa fa-user" aria-hidden="true"></i> @item.Ponentes.NomApe</li>
                                     <li><i class="fa fa-calendar" aria-hidden="true"></i> @item.FechaConf</li>
-                                    @*<li>@item.DetalleConf</li>*@
                                 </ul>
-                                @*@foreach (var compra in compras)
-                                {
-                                    @if (compra.IdConferencia == item.Id && compra.IdUser == ViewBag.IdUser)
-                                    {
-                                        <a href="/#" class="button hollow">Conferencia comprada</a>
-                                }
-                                else if (compra.IdConferencia != item.Id && compra.IdUser != ViewBag.IdUser)
-                                {*@
-                                    <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
-                                @*}
-                            }*@
+                                <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
                             </div>
                         </li>
                     }

@@ -1,0 +1,73 @@
+﻿@{ var conferencias = (List<Conferencia>)Model; }
+
+
+
+
+
+<body class="index">
+
+    <div class="barra">
+        <div class="contenedor clearfix">
+            <div class="logo">
+                <a href="/Home">
+                    <img src="/img/LOGO.png" alt="logo">
+                </a>
+            </div>
+
+            <div class="menu-movil">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="navegacion-principal clearfix">
+                <a href="/conferencia/CompraConf">Mis Conferencias</a>
+                <a href="#">Calendario</a>
+                <a href="#">Invitados</a>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Login">Login</a>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Logout">LogOut</a>
+                    <a href="/#">@User.Claims.FirstOrDefault().Value</a>
+                }
+            </nav>
+        </div>
+        <!--.contenedor-->
+    </div>
+    <!--.barra-->
+    <!--.Contenido-->
+
+
+    @if (ViewBag.Usuario != "LanRhXXX")
+    {
+        <a href="/ponente/registrar" class="btn btn-outline-dark"> Editar Conferencia</a>
+    }
+
+
+
+    <section class="invitados contenedor seccion">
+
+        @foreach (var item in conferencias)
+        {
+            <div class="invitado-info" id="@item.Id">
+                <h2>@item.TituloConf</h2>
+                <img src="@item.ImagePath" alt="" width="240" height="135">
+                <h3>Instructor</h3>
+                <p><i class="fa fa-user" aria-hidden="true"></i>@item.Ponentes.NomApe</p>
+
+                <h3>Fecha</h3>
+                <p><i class="fa fa-calendar" aria-hidden="true"></i>@item.FechaConf</p>
+                <p>@item.DetalleConf</p>
+
+            </div>
+            <!-- END .invitado -->
+        }
+        <!-- END lista-invitados -->
+    </section>
+    <!-- END .invitados -->
+
+</body>
+

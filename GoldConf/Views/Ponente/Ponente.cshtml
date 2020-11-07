@@ -78,32 +78,13 @@
             {
                 <li>
                     <div class="invitado">
-                        <a class="invitado-info" href="#@item.Id">
+                        <a class="invitado-info" href="/Ponente/detalle?idPonente=@item.Id">
                             <img src="@item.Imagen" alt="Imagen invitado">
                             <p>@item.NomApe</p>
                         </a>
                     </div>
                     <!-- END .invitado -->
                 </li>
-
-                <div style="display:none;">
-
-                    <div class="invitado-info" id="@item.Id">
-                        <h2>@item.NomApe</h2>
-                        <img src="@item.Imagen" alt="">
-                        <h4>Título profesional</h4>
-                        <p>@item.NomApe</p>
-
-                        <h4>Educación y Logros</h4>
-                        <p>Graduado en la Universidad Nacional de Ingeniería, realizo una maestría en Ingeniería de Sistemas en la UPC, certificado en desarrollo de software, uso de herramientas informáticas en la industria.</p>
-
-                        <h4>Contactos</h4>
-                        <p>@item.Telefono</p>
-                        <p>@item.Email</p>
-
-                    </div>
-
-                </div>
             }
         </ul>
         <!-- END lista-invitados -->

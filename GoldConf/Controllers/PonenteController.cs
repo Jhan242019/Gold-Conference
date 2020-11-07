@@ -32,7 +32,6 @@ namespace GoldConf.Controllers
 
             ViewBag.Buscar = search;
 
-            ViewBag.Ponentes = _context.Ponentes.ToList();
             var Ponente = _context.Ponentes
                 .ToList();
 
@@ -43,6 +42,18 @@ namespace GoldConf.Controllers
             }
 
             return View("Ponente", Ponente);
+        }
+        [HttpGet]
+        public ActionResult Detalle(int idPonente)
+        {
+            if (LoggedUser().Username != "LanRhXXX")
+                ViewBag.Usuario = "LanRhXXX";
+
+            var Ponente = _context.Ponentes.
+                Where(o => o.Id == idPonente).
+                ToList();
+
+            return View(Ponente);
         }
 
         [HttpGet]
