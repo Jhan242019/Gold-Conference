@@ -12,15 +12,20 @@ namespace GoldConf.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private GoldConfContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, GoldConfContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            ViewBag.Ponentes = _context.Ponentes.ToList();
+            var Ponente = _context.Ponentes
+                .ToList();
+            return View(Ponente);
         }
 
         public IActionResult Privacy()
