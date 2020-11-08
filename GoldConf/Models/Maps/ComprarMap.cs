@@ -10,7 +10,7 @@ namespace GoldConf.Models.Maps
     {
         public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<Comprar> builder)
         {
-            builder.ToTable("ComConf");
+            builder.ToTable("DetalleUC");
             builder.HasKey(o => o.Id);
 
             builder.HasOne(y => y.User)
