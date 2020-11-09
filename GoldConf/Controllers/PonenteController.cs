@@ -111,9 +111,9 @@ namespace GoldConf.Controllers
             }
         }
 
-        //[HttpGet]
-        //public ActionResult Edit(int id)
-        //{
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
         //    if (LoggedUser().Username != "LanRhXXX")
         //    {
         //        var conferencias = _context.Conferencias
@@ -125,12 +125,12 @@ namespace GoldConf.Controllers
         //    {
         //        ViewBag.Ponentes = _context.Ponentes.ToList();
         //        var account = _context.Conferencias.Where(o => o.Id == id).FirstOrDefault(); // si no lo encutra retorna un null
-        //        return View(account);
+                return View();
         //    }
-        //}
-        //[HttpPost]
-        //public ActionResult Edit(Conferencia conferencia, IFormFile image)
-        //{
+        }
+        [HttpPost]
+        public ActionResult Edit(Conferencia conferencia, IFormFile image)
+        {
         //    if (LoggedUser().Username != "LanRhXXX")
         //    {
         //        var conferencias = _context.Conferencias
@@ -149,10 +149,10 @@ namespace GoldConf.Controllers
         //        else
         //        {
         //            ViewBag.Ponentes = _context.Ponentes.ToList();
-        //            return View(conferencia);
+                    return View();
         //        }
         //    }
-        //}
+        }
 
     }
 }

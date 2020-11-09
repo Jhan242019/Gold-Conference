@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "E:\\ESTUDIOS\\UPN\\CICLO VII\\DISEÑO Y ARQUITECTURA DE SOTFWARE\\PROYECTO\\Avances\\T4\\Gold-Conference\\GoldConf\\GoldConf.csproj": {}
+    "D:\\ProyectDiars\\Gold-Conference\\GoldConf\\GoldConf.csproj": {}
   },
   "projects": {
-    "E:\\ESTUDIOS\\UPN\\CICLO VII\\DISEÑO Y ARQUITECTURA DE SOTFWARE\\PROYECTO\\Avances\\T4\\Gold-Conference\\GoldConf\\GoldConf.csproj": {
+    "D:\\ProyectDiars\\Gold-Conference\\GoldConf\\GoldConf.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\ESTUDIOS\\UPN\\CICLO VII\\DISEÑO Y ARQUITECTURA DE SOTFWARE\\PROYECTO\\Avances\\T4\\Gold-Conference\\GoldConf\\GoldConf.csproj",
+        "projectUniqueName": "D:\\ProyectDiars\\Gold-Conference\\GoldConf\\GoldConf.csproj",
         "projectName": "GoldConf",
-        "projectPath": "E:\\ESTUDIOS\\UPN\\CICLO VII\\DISEÑO Y ARQUITECTURA DE SOTFWARE\\PROYECTO\\Avances\\T4\\Gold-Conference\\GoldConf\\GoldConf.csproj",
-        "packagesPath": "C:\\Users\\JC\\.nuget\\packages\\",
-        "outputPath": "E:\\ESTUDIOS\\UPN\\CICLO VII\\DISEÑO Y ARQUITECTURA DE SOTFWARE\\PROYECTO\\Avances\\T4\\Gold-Conference\\GoldConf\\obj\\",
+        "projectPath": "D:\\ProyectDiars\\Gold-Conference\\GoldConf\\GoldConf.csproj",
+        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+        "outputPath": "D:\\ProyectDiars\\Gold-Conference\\GoldConf\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\JC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -77,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.403\\RuntimeIdentifierGraph.json"
         }
       }
     }
