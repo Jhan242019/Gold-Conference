@@ -1184,7 +1184,6 @@ C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3
 C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.RazorCoreGenerate.cache
 C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Auth\Login.cshtml.g.cs
 C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Auth\Registrar.cshtml.g.cs
-C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\CompraConf.cshtml.g.cs
 C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Conferencias.cshtml.g.cs
 C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Create.cshtml.g.cs
 C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Detalle.cshtml.g.cs
@@ -1375,3 +1374,5 @@ E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4
 E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.dll
 E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.pdb
 E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.genruntimeconfig.cache
+C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Futuras.cshtml.g.cs
+C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Pasadas.cshtml.g.cs

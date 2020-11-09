@@ -1,5 +1,9 @@
 ﻿@{ var compra = ((List<Comprar>)Model); }
 
+
+<link href="/css/Detalle.css" rel="stylesheet" />
+
+
 <body class="index">
 
     <div class="barra">
@@ -36,12 +40,12 @@
     <!--.barra-->
     <!--.Contenido-->
 
-    <form class="form-inline">
+    <div class="contenedor">
         <div class="form-group mb-2">
-            <input class="form-control" style="background-color:transparent; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+            <input style="background-size:cover; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+            <button class="button jhan" type="submit">Buscar</button>
         </div>
-        <button class="form-control btn btn-outline-dark btn-sm" type="button">Buscar</button>
-    </form>
+    </div>
 
     <section class="seccion contenedor">
         <h2>Eventos Anteriores</h2>
