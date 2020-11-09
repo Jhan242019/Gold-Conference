@@ -1,0 +1,15 @@
+﻿
+/* BUTTON BUSCAR*/
+button.jhan {
+    width: 10%;
+    padding: 10px 10px;
+}
+
+/* DETALLE PONENTE /*/
+.invitado-info p {
+    text-align: left;
+}
+
+.invitado-info img {
+    vertical-align: middle;
+}

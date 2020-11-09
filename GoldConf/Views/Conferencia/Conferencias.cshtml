@@ -3,6 +3,18 @@
     //var compras = (List<Comprar>)ViewBag.Compra;
 }
 
+<head>
+    <!-- Los iconos tipo Solid de Fontawesome-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+    <!-- Nuestro css-->
+    <link rel="stylesheet" type="text/css" href="/css/Login.css">
+    <link href="/css/Nosotros.css" rel="stylesheet" />
+    <link href="/css/normalize.css" rel="stylesheet" />
+    <link href="/css/Detalle.css" rel="stylesheet" />
+</head>
+
 <body class="index">
 
     <div class="barra">
@@ -39,12 +51,13 @@
     <!--.barra-->
     <!--.Contenido-->
 
-    <form class="form-inline">
-        <div class="form-group mb-2">
-            <input class="form-control" style="background-color:transparent; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+        <div class="contenedor">
+            <div class="form-group mb-2">
+                <input style="background-size:cover; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+                <button class="button jhan" type="submit">Buscar</button>
+            </div>
         </div>
-        <button class="form-control btn btn-outline-dark btn-sm" type="button">Buscar</button>
-    </form>
+
 
     <section class="seccion contenedor">
         @if (ViewBag.Usuario != "LanRhXXX")

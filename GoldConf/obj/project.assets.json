@@ -8808,19 +8808,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Congregacion\\.nuget\\packages\\": {}
+    "C:\\Users\\JC\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Visual\\T4_PROYECTO\\GoldConf\\GoldConf.csproj",
+      "projectUniqueName": "E:\\ESTUDIOS\\UPN\\CICLO VII\\DISEÑO Y ARQUITECTURA DE SOTFWARE\\PROYECTO\\Avances\\T4\\Gold-Conference\\GoldConf\\GoldConf.csproj",
       "projectName": "GoldConf",
-      "projectPath": "D:\\Visual\\T4_PROYECTO\\GoldConf\\GoldConf.csproj",
-      "packagesPath": "C:\\Users\\Congregacion\\.nuget\\packages\\",
-      "outputPath": "D:\\Visual\\T4_PROYECTO\\GoldConf\\obj\\",
+      "projectPath": "E:\\ESTUDIOS\\UPN\\CICLO VII\\DISEÑO Y ARQUITECTURA DE SOTFWARE\\PROYECTO\\Avances\\T4\\Gold-Conference\\GoldConf\\GoldConf.csproj",
+      "packagesPath": "C:\\Users\\JC\\.nuget\\packages\\",
+      "outputPath": "E:\\ESTUDIOS\\UPN\\CICLO VII\\DISEÑO Y ARQUITECTURA DE SOTFWARE\\PROYECTO\\Avances\\T4\\Gold-Conference\\GoldConf\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Congregacion\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\JC\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8883,7 +8883,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.401\\RuntimeIdentifierGraph.json"
       }
     }
   }

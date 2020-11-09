@@ -1,5 +1,9 @@
 ﻿@{ var ponentes = (List<Ponente>)Model; }
 
+<head>
+    <link href="/css/Detalle.css" rel="stylesheet" />
+</head>
+
 <body class="index">
 
     <div class="barra">
@@ -48,7 +52,7 @@
             }
             <div class="invitado-info">
                 <h2>@item.NomApe</h2>
-                <img src="@item.Imagen" alt="">
+                <img src="@item.Imagen" alt="Imagen de Ponente">
                 <h3>Título profesional</h3>
                 <p>@item.Especialidad</p>
 
