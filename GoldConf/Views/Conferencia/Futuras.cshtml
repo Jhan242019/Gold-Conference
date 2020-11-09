@@ -1,0 +1,84 @@
+﻿@{ var compra = ((List<Comprar>)Model);
+    int i = 0;
+}
+
+<body class="index">
+
+    <div class="barra">
+        <div class="contenedor clearfix">
+            <div class="logo">
+                <a href="/Home">
+                    <img src="/img/LOGO.png" alt="logo">
+                </a>
+            </div>
+
+            <div class="menu-movil">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <nav class="navegacion-principal clearfix">
+                <a href="/conferencia/Pasadas">Mis Conferencias</a>
+                <a href="/conferencia/conferencias">Conferencias</a>
+                <a href="/Ponente/ponente">Invitados</a>
+                @if (!User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Login">Login</a>
+                }
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <a href="/Auth/Logout">LogOut</a>
+                    <a href="/#">@User.Claims.FirstOrDefault().Value</a>
+                }
+            </nav>
+        </div>
+        <!--.contenedor-->
+    </div>
+    <!--.barra-->
+    <!--.Contenido-->
+
+    <form class="form-inline">
+        <div class="form-group mb-2">
+            <input class="form-control" style="background-color:transparent; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
+        </div>
+        <button class="form-control btn btn-outline-dark btn-sm" type="button">Buscar</button>
+    </form>
+
+    <section class="seccion contenedor">
+        <h2>Proximos Eventos</h2>
+        <div class="calendario">
+
+            @foreach (var conferencia in compra)
+            {
+                @if (conferencia.Conferencia.FechaConf >= ViewBag.fecha.AddMonths(i) && conferencia.Conferencia.FechaConf <= ViewBag.fecha.AddMonths(i + 1))
+                {
+                    <h3>
+                        <i class="fa fa-calendar" aria-hidden="true"></i>
+                        @ViewBag.fecha.AddMonths(i) - @ViewBag.fecha.AddMonths(i + 1)
+                    </h3>
+                    @foreach (var item in compra)
+                    {
+                        @if (item.Conferencia.FechaConf >= ViewBag.fecha.AddMonths(i) && item.Conferencia.FechaConf < ViewBag.fecha.AddMonths(i + 1))
+                        {
+                            <div class="dia">
+                                <p class="titulo">@item.Conferencia.TituloConf</p>
+                                <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Conferencia.Id">
+                                    <img alt="" width="240" height="135" src="@item.Conferencia.ImagePath" srcset="@item.Conferencia.ImagePath 1x, @item.Conferencia.ImagePath 2x">
+                                </a>
+
+                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.Conferencia.FechaConf)</p>
+                                <p><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.Conferencia.FechaConf)</p>
+                                <p><i class="fa fa-user" aria-hidden="true"></i> @item.Conferencia.Ponentes.NomApe</p>
+
+                                <a href="#" class="button hollow">Acceder a conferencia</a>
+                            </div>
+                        }
+                    }
+                }
+                i++;
+            }
+        <!--.calendario-->
+        </div>
+    </section>
+</body>

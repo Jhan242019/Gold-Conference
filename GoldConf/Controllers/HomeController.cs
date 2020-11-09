@@ -12,7 +12,7 @@ namespace GoldConf.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        private GoldConfContext _context;
+        private readonly GoldConfContext _context;
 
         public HomeController(ILogger<HomeController> logger, GoldConfContext context)
         {

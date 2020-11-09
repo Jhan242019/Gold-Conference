@@ -1,7 +1,4 @@
-﻿@{
-    var conferencias = (List<Conferencia>)Model;
-    //var compras = (List<Comprar>)ViewBag.Compra;
-}
+﻿@{ var compra = ((List<Comprar>)Model); }
 
 <body class="index">
 
@@ -20,7 +17,7 @@
             </div>
 
             <nav class="navegacion-principal clearfix">
-                <a href="/conferencia/Pasadas">Mis Conferencias</a>
+                <a href="/conferencia/conferencias">Conferencias</a>
                 <a href="/conferencia/Futuras">Calendario</a>
                 <a href="/Ponente/ponente">Invitados</a>
                 @if (!User.Identity.IsAuthenticated)
@@ -47,50 +44,30 @@
     </form>
 
     <section class="seccion contenedor">
-        @if (ViewBag.Usuario != "LanRhXXX")
-        {
-            <a href="/conferencia/create" class="button hollow">Programar Conferencia</a>
-            <bir />
-        }
-        <h2>Conferencias</h2>
+        <h2>Eventos Anteriores</h2>
         <div class="calendario">
-            @if (TempData["COMPRA"] != null)
-            {
-                <div class="alert alert-danger">
-                    @TempData["COMPRA"]
-
-                </div>
-            }
             <ul class="lista-precios clearfix">
-                @foreach (var item in conferencias)
+                @foreach (var item in compra)
                 {
                     <li>
                         <div class="tabla-precio">
-                            <h3>@item.TituloConf</h3>
-
-                            <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Id">
-                                <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x">
+                            <h3>@item.Conferencia.TituloConf</h3>
+                            <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Conferencia.Id">
+                                <img alt="" width="240" height="135" src="@item.Conferencia.ImagePath" srcset="@item.Conferencia.ImagePath 1x, @item.Conferencia.ImagePath 2x">
                             </a>
-
                             @*<div class="course-card--image-wrapper--Sxd90"> <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x"> </div>*@
                             <div> __________________________</div>
                             <ul>
-                                <li><i class="fa fa-user" aria-hidden="true"></i> @item.Ponentes.NomApe</li>
-                                <li><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.FechaConf)</li>
-                                <li><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.FechaConf)</li>
+                                <li><i class="fa fa-user" aria-hidden="true"></i> @item.Conferencia.Ponentes.NomApe</li>
+                                <li><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.Conferencia.FechaConf)</li>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.Conferencia.FechaConf)</li>
                             </ul>
-                            @if (ViewBag.Usuario != "LanRhXXX")
-                            {
-                                <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
-                            }
-                            else
-                            {
-                                <a href="/conferencia/Edit?id=@item.Id" class="button hollow"> Editar Conferencia</a>
-                            }
+                            <a href="#" class="button hollow">Revisar a conferencia</a>
                         </div>
                     </li>
                 }
             </ul>
         </div>
     </section>
+
 </body>

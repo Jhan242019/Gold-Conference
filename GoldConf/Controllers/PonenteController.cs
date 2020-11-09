@@ -38,10 +38,10 @@ namespace GoldConf.Controllers
             if (!string.IsNullOrEmpty(search))
             {
                 Ponente = Ponente.Where(s => s.NomApe.Contains(search)).ToList();
-                return View("Ponente", Ponente);
+                return View(Ponente);
             }
 
-            return View("Ponente", Ponente);
+            return View(Ponente);
         }
         [HttpGet]
         public ActionResult Detalle(int idPonente)
@@ -67,7 +67,7 @@ namespace GoldConf.Controllers
             }
             else
             {
-                return View("Registrar", new Ponente());
+                return View(new Ponente());
             }
         }
         [HttpPost]
@@ -154,69 +154,5 @@ namespace GoldConf.Controllers
         //    }
         //}
 
-        //[HttpGet]
-        //public ActionResult Delete(int id)
-        //{
-        //    if (LoggedUser().Username != "LanRhXXX")
-        //    {
-        //        var conferencias = _context.Conferencias
-        //            .Include(o => o.Ponentes)
-        //            .ToList();
-        //        return RedirectToAction("Conferencias", conferencias);
-        //    }
-        //    else
-        //    {
-        //        var conferencia = _context.Conferencias.Where(o => o.Id == id).FirstOrDefault();
-        //        _context.Conferencias.Remove(conferencia);
-        //        _context.SaveChanges();
-        //        return RedirectToAction("Conferencias");
-        //    }
-        //}
-
-        //[Authorize]
-        //[HttpGet]
-        //public ActionResult Comprar(Comprar comprar, int idF)
-        //{
-        //    var compra = _context.Compras.ToList();
-
-        //    //foreach (var item in compra)
-        //    //{
-        //    //    if (item.IdConferencia != idF)
-        //    //    {
-
-        //    comprar.IdUser = LoggedUser().Id;
-        //    comprar.IdConferencia = idF;
-
-        //    //Console.WriteLine("Conferencia : " + item.IdConferencia);
-
-        //    _context.Compras.Add(comprar);
-        //    _context.SaveChanges();
-
-        //    //        return RedirectToAction("Conferencias");
-        //    //    }
-        //    //}
-
-        //    return RedirectToAction("Conferencias");
-        //}
-
-        //[Authorize]
-        //public ActionResult CompraConf(Comprar comprar, string search)
-        //{
-        //    var compras = _context.Ponentes.ToList();
-
-        //    ViewBag.Compras = _context.Compras.ToList().Where(o => o.IdUser == LoggedUser().Id);
-
-        //    ViewBag.Buscar = search;
-        //    var compra = _context.Conferencias
-        //            .Include(o => o.Ponentes)
-        //            .ToList();
-
-        //    if (!string.IsNullOrEmpty(search))
-        //    {
-        //        compra = compra.Where(s => s.Ponentes.NomApe.Contains(search) || s.TituloConf.Contains(search)).ToList();
-        //        return View("CompraConf", compra);
-        //    }
-        //    return View("CompraConf", compra);
-        //}
     }
 }

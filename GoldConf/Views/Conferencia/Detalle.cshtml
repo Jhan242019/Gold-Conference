@@ -1,9 +1,5 @@
 ﻿@{ var conferencias = (List<Conferencia>)Model; }
 
-
-
-
-
 <body class="index">
 
     <div class="barra">
@@ -21,8 +17,8 @@
             </div>
 
             <nav class="navegacion-principal clearfix">
-                <a href="/conferencia/CompraConf">Mis Conferencias</a>
-                <a href="#">Calendario</a>
+                <a href="/conferencia/Pasadas">Mis Conferencias</a>
+                <a href="/conferencia/Futuras">Calendario</a>
                 <a href="#">Invitados</a>
                 @if (!User.Identity.IsAuthenticated)
                 {
@@ -41,17 +37,14 @@
     <!--.Contenido-->
 
 
-    @if (ViewBag.Usuario != "LanRhXXX")
-    {
-        <a href="/ponente/registrar" class="btn btn-outline-dark"> Editar Conferencia</a>
-    }
-
-
-
     <section class="invitados contenedor seccion">
 
         @foreach (var item in conferencias)
         {
+            @if (ViewBag.Usuario != "LanRhXXX")
+            {
+                <a href="/conferencia/Edit?id=@item.Id" class="button hollow"> Editar Conferencia</a>
+            }
             <div class="invitado-info" id="@item.Id">
                 <h2>@item.TituloConf</h2>
                 <img src="@item.ImagePath" alt="" width="240" height="135">
@@ -61,6 +54,12 @@
                 <h3>Fecha</h3>
                 <p><i class="fa fa-calendar" aria-hidden="true"></i>@item.FechaConf</p>
                 <p>@item.DetalleConf</p>
+
+                @if (ViewBag.Usuario != "LanRhXXX")
+                {
+                    <h3>Numero de compras</h3>
+                    <p>@ViewBag.Compra</p>
+                }
 
             </div>
             <!-- END .invitado -->

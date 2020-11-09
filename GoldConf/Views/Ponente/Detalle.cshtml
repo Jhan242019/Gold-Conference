@@ -1,9 +1,5 @@
 ﻿@{ var ponentes = (List<Ponente>)Model; }
 
-
-
-
-
 <body class="index">
 
     <div class="barra">
@@ -21,8 +17,8 @@
             </div>
 
             <nav class="navegacion-principal clearfix">
-                <a href="/conferencia/CompraConf">Mis Conferencias</a>
-                <a href="#">Calendario</a>
+                <a href="/conferencia/Pasadas">Mis Conferencias</a>
+                <a href="/conferencia/Futuras">Calendario</a>
                 <a href="#">Invitados</a>
                 @if (!User.Identity.IsAuthenticated)
                 {
@@ -41,17 +37,15 @@
     <!--.Contenido-->
 
 
-    @if (ViewBag.Usuario != "LanRhXXX")
-    {
-        <a href="/ponente/registrar" class="btn btn-outline-dark"> Editar Ponente</a>
-    }
-
-
 
     <section class="invitados contenedor seccion">
 
         @foreach (var item in ponentes)
         {
+            @if (ViewBag.Usuario != "LanRhXXX")
+            {
+                <a href="/ponente/edit?id=@item.Id" class="button hollow"> Editar Ponente</a>
+            }
             <div class="invitado-info">
                 <h2>@item.NomApe</h2>
                 <img src="@item.Imagen" alt="">

@@ -25,36 +25,47 @@ namespace GoldConf.Controllers
         [HttpGet]
         public ActionResult Conferencias(string search)
         {
+            var ponentes = _context.Ponentes.ToList();
+            var conferencias = _context.Conferencias.ToList();
             if (LoggedUser().Username != "LanRhXXX")
+            {
                 ViewBag.Usuario = "LanRhXXX";
+                conferencias = _context.Conferencias
+                .Include(o => o.Ponentes)
+                .OrderBy(o => o.FechaConf)
+                .Where(o => o.FechaConf >= DateTime.Now)
+                .ToList();
+            }
+            else
+            {
+                conferencias = _context.Conferencias
+                .Include(o => o.Ponentes)
+                .OrderBy(o => o.FechaConf)
+                .ToList();
+            }
             
             ViewBag.Buscar = search;
-
-            ViewBag.Ponentes = _context.Ponentes.ToList();
-
-            var conferencias = _context.Conferencias
-                .Include(o => o.Ponentes)
-                .ToList();
-
-            //ViewBag.Compra = _context.Compras.
-            //    Where(o => o.IdUser == LoggedUser().Id).
-            //    ToList();
 
             ViewBag.IdUser = LoggedUser().Id;
 
             if (!string.IsNullOrEmpty(search))
             {
                 conferencias = conferencias.Where(s => s.Ponentes.NomApe.Contains(search) || s.TituloConf.Contains(search)).ToList();
-                return View("Conferencias", conferencias);
+                return View(conferencias);
             }
 
-            return View("Conferencias",conferencias);
+            return View(conferencias);
         }
 
         public ActionResult Detalle(int idConferencia)
         {
             if (LoggedUser().Username != "LanRhXXX")
                 ViewBag.Usuario = "LanRhXXX";
+
+            var compra = _context.Compras.ToList().Where(o => o.IdConferencia == idConferencia);
+            ViewBag.Compra = compra.Count();
+
+            Console.WriteLine("Numero de veces compradas: " + ViewBag.Compra);
 
             ViewBag.Ponentes = _context.Ponentes.ToList();
 
@@ -81,7 +92,7 @@ namespace GoldConf.Controllers
             else
             {
                 ViewBag.Ponentes = _context.Ponentes.ToList();
-                return View("Create", new Conferencia());
+                return View( new Conferencia());
             }
         }
         [HttpPost]
@@ -115,7 +126,7 @@ namespace GoldConf.Controllers
                 else
                 {
                     ViewBag.Ponentes = _context.Ponentes.ToList();
-                    return View("Create", conferencia);
+                    return View(conferencia);
                 }
             }
         }
@@ -163,7 +174,7 @@ namespace GoldConf.Controllers
             }
         }
 
-        [HttpGet]
+        /*[HttpGet]
         public ActionResult Delete(int id)
         {
             if (LoggedUser().Username != "LanRhXXX")
@@ -180,9 +191,8 @@ namespace GoldConf.Controllers
                 _context.SaveChanges();
                 return RedirectToAction("Conferencias");
             }
-        }
+        }*/
 
-        [Authorize]
         [HttpGet]
         public ActionResult Comprar(Comprar comprar, int idF)
         {
@@ -210,24 +220,58 @@ namespace GoldConf.Controllers
             return RedirectToAction("Conferencias");
         }
 
-        [Authorize]
-        public ActionResult CompraConf(string search)
+        [HttpGet]
+        public ActionResult Pasadas(string search)
         {
-            var compras = _context.Ponentes.ToList();
+            var ponente = _context.Ponentes.ToList();
 
-            ViewBag.Compras = _context.Compras.ToList().Where(o => o.IdUser == LoggedUser().Id);
+            var conferencia = _context.Conferencias
+                .Include(o => o.Ponentes)
+                .ToList();
+
+            var compra = _context.Compras
+                    .Include(o => o.Conferencia)
+                    .Where(o => o.IdUser == LoggedUser().Id)
+                    .Where(o => o.Conferencia.FechaConf < DateTime.Now)
+                    .OrderBy(o => o.Conferencia.FechaConf)
+                    .ToList();
 
             ViewBag.Buscar = search;
-            var compra = _context.Conferencias
-                    .Include(o => o.Ponentes)
-                    .ToList();
 
             if (!string.IsNullOrEmpty(search))
             {
-                compra = compra.Where(s => s.Ponentes.NomApe.Contains(search) || s.TituloConf.Contains(search)).ToList();
-                return View("CompraConf", compra);
+                compra = compra.Where(s => s.Conferencia.Ponentes.NomApe.Contains(search) || s.Conferencia.TituloConf.Contains(search)).ToList();
+                return View(compra);
             }
-            return View("CompraConf", compra);
+            return View(compra);
+        }
+        [HttpGet]
+        public ActionResult Futuras(string search)
+        {
+            var ponente = _context.Ponentes.ToList();
+
+            var conferencia = _context.Conferencias
+                .Include(o => o.Ponentes)
+                .ToList();
+
+            var compra = _context.Compras
+                    .Include(o => o.Conferencia)
+                    .Where(o => o.IdUser == LoggedUser().Id)
+                    .Where(o => o.Conferencia.FechaConf >= DateTime.Now)
+                    .OrderBy(o => o.Conferencia.FechaConf)
+                    .ToList();
+                        
+            DateTime fecha = DateTime.Today;
+            ViewBag.fecha = fecha;
+
+            ViewBag.Buscar = search;
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                compra = compra.Where(s => s.Conferencia.Ponentes.NomApe.Contains(search) || s.Conferencia.TituloConf.Contains(search)).ToList();
+                return View(compra);
+            }
+            return View(compra);
         }
     }
 }

@@ -1,25 +1,5 @@
 ﻿@{ var ponentes = (List<Ponente>)Model; }
 
-<head>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    <link rel="stylesheet" href="~/css/Conf.css">
-    @*<link rel="stylesheet" href="~/css/Nosotros.css"/>*@
-</head>
-
-
-
-@*@if (User.Claims.FirstOrDefault() != null)
-    {
-        <body>
-            <header>
-                <div class="container">
-                    <h1 class="h-100 badge badge-dark">Usuario: @User.Claims.FirstOrDefault().Value</h1>
-                </div>
-            </header>
-        </body>
-    }*@
-
 
 <body class="index">
 
@@ -38,8 +18,8 @@
             </div>
 
             <nav class="navegacion-principal clearfix">
-                <a href="/conferencia/CompraConf">Mis Conferencias</a>
-                <a href="#">Calendario</a>
+                <a href="/conferencia/Pasadas">Mis Conferencias</a>
+                <a href="/conferencia/Futuras">Calendario</a>
                 <a href="#">Invitados</a>
                 @if (!User.Identity.IsAuthenticated)
                 {
@@ -64,14 +44,11 @@
         <button class="form-control btn btn-outline-dark btn-sm" type="button">Buscar</button>
     </form>
 
-    @if (ViewBag.Usuario != "LanRhXXX")
-    {
-        <a href="/ponente/registrar" class="btn btn-outline-dark"> Registrar Ponente</a>
-    }
-
-
-
     <section class="invitados contenedor seccion">
+        @if (ViewBag.Usuario != "LanRhXXX")
+        {
+            <a href="/ponente/registrar" class="button hollow"> Registrar Ponente</a>
+        }
         <h2>Nuestros conferencistas</h2>
         <ul class="lista-invitados clearfix">
             @foreach (var item in ponentes)
