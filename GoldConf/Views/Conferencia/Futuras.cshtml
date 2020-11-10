@@ -40,10 +40,10 @@
     <!--.barra-->
     <!--.Contenido-->
 
-    <div class="contenedor">
+    <div class="seccion contenedor">
         <div class="form-group mb-2">
-            <input style="background-size:cover; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
-            <button class="button jhan" type="submit">Buscar</button>
+            <input style="background-size:cover; " type="search" name="search" value="@ViewBag.Buscar">
+            <button class="button jhan" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
         </div>
     </div>
 
@@ -53,7 +53,7 @@
 
             @foreach (var conferencia in compra)
             {
-                @if (conferencia.Conferencia.FechaConf >= ViewBag.fecha.AddMonths(i) && conferencia.Conferencia.FechaConf <= ViewBag.fecha.AddMonths(i + 1))
+                @if (conferencia.Conferencia.FechaConf >= ViewBag.fecha.AddMonths(i) && conferencia.Conferencia.FechaConf < ViewBag.fecha.AddMonths(i + 1))
                 {
                     <h3>
                         <i class="fa fa-calendar" aria-hidden="true"></i>
@@ -77,10 +77,10 @@
                             </div>
                         }
                     }
+                    i++;
                 }
-                i++;
             }
-        <!--.calendario-->
+            <!--.calendario-->
         </div>
     </section>
 </body>

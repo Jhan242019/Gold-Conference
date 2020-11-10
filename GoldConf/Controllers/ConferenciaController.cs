@@ -236,6 +236,9 @@ namespace GoldConf.Controllers
                     .OrderBy(o => o.Conferencia.FechaConf)
                     .ToList();
 
+            DateTime fecha = DateTime.Today;
+            ViewBag.fecha = fecha;
+
             ViewBag.Buscar = search;
 
             if (!string.IsNullOrEmpty(search))

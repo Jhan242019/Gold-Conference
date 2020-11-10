@@ -21,5 +21,9 @@ namespace GoldConf.Models
         [RegularExpression(@"[0-9]+")]
         [MinLength(7)]
         public string Telefono { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public string Logros { get; set; }
+        [Required(ErrorMessage = "Este campo es obligatorio")]
+        public string Experiencia { get; set; }
     }
 }

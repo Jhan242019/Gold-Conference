@@ -1,4 +1,5 @@
-﻿@{ var ponentes = (List<Ponente>)Model; }
+﻿@{ var ponente = (Ponente)Model;
+}
 
 <head>
     <link href="/css/Detalle.css" rel="stylesheet" />
@@ -41,34 +42,35 @@
     <!--.Contenido-->
 
 
+    <div class="contenedor">
 
-    <section class="invitados contenedor seccion">
-
-        @foreach (var item in ponentes)
+        @if (ViewBag.Usuario != "LanRhXXX")
         {
-            @if (ViewBag.Usuario != "LanRhXXX")
-            {
-                <a href="/ponente/edit?id=@item.Id" class="button hollow"> Editar Ponente</a>
-            }
-            <div class="invitado-info">
-                <h2>@item.NomApe</h2>
-                <img src="@item.Imagen" alt="Imagen de Ponente">
-                <h3>Título profesional</h3>
-                <p>@item.Especialidad</p>
+            <a href="/ponente/edit?id=@ponente.Id" class="button hollow"> Editar Ponente</a>
+        }
+
+        <h2>@ponente.NomApe</h2>
+
+        <img class="imgRedonda float-right" src="@ponente.Imagen" alt="Imagen de Ponente">
+
+        <div class="contenedor invitado-info">
+            <section class="invitados contenedor seccion">
+                <p>Título profesional @ponente.Especialidad</p>
+
+                <p>Celular</p>
+                <p>@ponente.Telefono</p>
+
+                <p>Email</p>
+                <p>@ponente.Telefono</p>
 
                 <h3>Educación y Logros</h3>
-                <p>Graduado en la Universidad Nacional de Ingeniería, realizo una maestría en Ingeniería de Sistemas en la UPC, certificado en desarrollo de software, uso de herramientas informáticas en la industria.</p>
+                <p>@ponente.Logros</p>
 
-                <h3>Contactos</h3>
-                <p>@item.Telefono</p>
-                <p>@item.Email</p>
-
-            </div>
-            <!-- END .invitado -->
-        }
-        <!-- END lista-invitados -->
-    </section>
-    <!-- END .invitados -->
-
+                <h3>Experiencia Laboral</h3>
+                <p>@ponente.Experiencia</p>
+            </section>
+        </div>
+        <!-- END .invitado -->
+    </div>
 </body>
 

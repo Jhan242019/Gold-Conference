@@ -3,17 +3,7 @@
     //var compras = (List<Comprar>)ViewBag.Compra;
 }
 
-<head>
-    <!-- Los iconos tipo Solid de Fontawesome-->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
-    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
-
-    <!-- Nuestro css-->
-    <link rel="stylesheet" type="text/css" href="/css/Login.css">
-    <link href="/css/Nosotros.css" rel="stylesheet" />
-    <link href="/css/normalize.css" rel="stylesheet" />
-    <link href="/css/Detalle.css" rel="stylesheet" />
-</head>
+<link href="/css/Detalle.css" rel="stylesheet" />
 
 <body class="index">
 
@@ -51,29 +41,30 @@
     <!--.barra-->
     <!--.Contenido-->
 
-        <div class="contenedor">
-            <div class="form-group mb-2">
-                <input style="background-size:cover; " type="search" placeholder="Buscar" name="search" value="@ViewBag.Buscar">
-                <button class="button jhan" type="submit">Buscar</button>
-            </div>
+    <div class="seccion contenedor">
+        <div class="form-group mb-2">
+            <input style="background-size:cover; " type="search" name="search" value="@ViewBag.Buscar">
+            <button class="button jhan" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
         </div>
-
+    </div>
 
     <section class="seccion contenedor">
+
         @if (ViewBag.Usuario != "LanRhXXX")
         {
             <a href="/conferencia/create" class="button hollow">Programar Conferencia</a>
             <bir />
         }
-        <h2>Conferencias</h2>
-        <div class="calendario">
-            @if (TempData["COMPRA"] != null)
-            {
-                <div class="alert alert-danger">
-                    @TempData["COMPRA"]
 
-                </div>
-            }
+        <h2>Conferencias</h2>
+        @if (TempData["COMPRA"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["COMPRA"]
+
+            </div>
+        }
+        <div class="calendario">
             <ul class="lista-precios clearfix">
                 @foreach (var item in conferencias)
                 {

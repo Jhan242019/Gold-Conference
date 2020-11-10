@@ -51,7 +51,7 @@ namespace GoldConf.Controllers
 
             var Ponente = _context.Ponentes.
                 Where(o => o.Id == idPonente).
-                ToList();
+                FirstOrDefault();
 
             return View(Ponente);
         }
