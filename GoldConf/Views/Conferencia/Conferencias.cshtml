@@ -85,11 +85,11 @@
                             </ul>
                             @if (ViewBag.Usuario != "LanRhXXX")
                             {
-                                <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
+                                <a href="/conferencia/Edit?id=@item.Id" class="button hollow"> Editar Conferencia</a>
                             }
                             else
                             {
-                                <a href="/conferencia/Edit?id=@item.Id" class="button hollow"> Editar Conferencia</a>
+                                <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
                             }
                         </div>
                     </li>
