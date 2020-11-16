@@ -31,7 +31,7 @@
                 }
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="/Auth/Logout">LogOut</a>
+                    <a href="/Auth/Logout"><i class="fa fa-power-off" aria-hidden="true"></i></a>
                     <a href="/#">@User.Claims.FirstOrDefault().Value</a>
                 }
             </nav>
@@ -88,5 +88,40 @@
             }
         </div>
     </section>
+
+    <footer class="site-footer">
+        <div class="contenedor clearfix">
+            <div class="footer-informacion">
+                <h3>Sobre <span>gold conference</span></h3>
+                <p>
+                    Somos su conexión virtual a los conferencistas más destacadas y renombradas de Perú, Latinoamérica y el Mundo. Actualmente, abarcamos el continente americano acercando las mentes más brillantes de todo el mundo a las empresas e instituciones que buscan una figura sobresaliente para sus eventos privados y corporativos. Contamos con más de 20 conferencistas de una gran variedad de disciplinas centradas únicamente en tecnologías como HTML5, XML, CSS, JavaScript, PHP, WordPress), entre otras.
+                    En GOLD CONFERENCE tenemos el ponente ideal para su reunión y presupuesto.
+                </p>
+            </div>
+
+            <div class="ultimos-tweets">
+                <h3>Últimos <span>tweets</span></h3>
+                <a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#fe4918" href="https://twitter.com/JhanCarlosI">Tweets by </a>
+                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+
+            <div class="menu">
+                <h3>Redes <span>sociales</span></h3>
+                <nav class="redes-sociales">
+                    <a href="https://www.facebook.com/Gold-Conference-Online-101111435084124/"><i class="fa fa-facebook"></i></a>
+                    <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/"><i class="fa fa-youtube-play"></i></a>
+                    <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+                </nav>
+            </div>
+        </div>
+
+        <p class="copyright">
+            Todos los derechos Reservados GOLD CONFERENCE 2020.
+        </p>
+
+    </footer>
+    <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="/js/Nuestro.js"></script>
 
 </body>

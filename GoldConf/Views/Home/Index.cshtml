@@ -1,4 +1,14 @@
-﻿@{ var ponentes = (List<Ponente>)Model; }
+﻿@{ var ponentes = (List<Ponente>)Model;
+    int n;
+    if (ponentes.Count() > 6)
+    {
+        n = 6;
+    }
+    else
+    {
+        n = ponentes.Count();
+    }
+}
 
 <head>
     <meta charset="utf-8">
@@ -29,9 +39,9 @@
             <div class="contenido-header">
                 <nav class="redes-sociales">
                     <a href="https://www.facebook.com/Gold-Conference-Online-101111435084124/"><i class="fa fa-facebook"></i></a>
-                    <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
-                    <a href="https://www.youtube.com/"><i class="fa fa-youtube-play"></i></a>
-                    <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+                    <a href="https://twitter.com/gold_conference"><i class="fa fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/channel/UCVbYnjINFhIA_qLPC9zAa8Q"><i class="fa fa-youtube-play"></i></a>
+                    <a href="https://www.instagram.com/GOLDCONF_/"><i class="fa fa-instagram"></i></a>
                 </nav>
 
                 <div class="informacion-evento">
@@ -76,7 +86,7 @@
                     <a href="/Auth/Login">Login</a>}
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <a href="/Auth/Logout">LogOut</a>
+                    <a href="/Auth/Logout"><i class="fa fa-power-off" aria-hidden="true"></i></a>
                     <a href="/#">@User.Claims.FirstOrDefault().Value</a>
                 }
             </nav>
@@ -140,8 +150,10 @@
     <section class="invitados contenedor seccion">
         <h2>Nuestros conferencistas</h2>
         <ul class="lista-invitados clearfix">
-            @foreach (var item in ponentes)
+
+            @for (int i = 0; i < n; i++)
             {
+                var item = ponentes[i];
                 <li>
                     <div class="invitado">
                         <a class="invitado-info" href="#@item.Id">
@@ -168,7 +180,7 @@
                         <p>@item.Email</p>
 
                     </div>
-                </div>            
+                </div>
             }
         </ul>
         <!-- END lista-invitados -->
@@ -183,13 +195,21 @@
                     En GOLD CONFERENCE tenemos el ponente ideal para su reunión y presupuesto.
                 </p>
             </div>
+
+            <div class="ultimos-tweets">
+                <h3>Últimos <span>tweets</span></h3>
+                <a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#fe4918" href="https://twitter.com/JhanCarlosI">Tweets by</a>
+      
+                <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+            </div>
+
             <div class="menu">
                 <h3>Redes <span>sociales</span></h3>
                 <nav class="redes-sociales">
                     <a href="https://www.facebook.com/Gold-Conference-Online-101111435084124/"><i class="fa fa-facebook"></i></a>
-                    <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
-                    <a href="https://www.youtube.com/"><i class="fa fa-youtube-play"></i></a>
-                    <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+                    <a href="https://twitter.com/gold_conference"><i class="fa fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/channel/UCVbYnjINFhIA_qLPC9zAa8Q"><i class="fa fa-youtube-play"></i></a>
+                    <a href="https://www.instagram.com/GOLDCONF_/"><i class="fa fa-instagram"></i></a>
                 </nav>
             </div>
         </div>

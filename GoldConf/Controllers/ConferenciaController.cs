@@ -40,10 +40,10 @@ namespace GoldConf.Controllers
             {
                 conferencias = _context.Conferencias
                 .Include(o => o.Ponentes)
-                .OrderBy(o => o.FechaConf)
+                .OrderByDescending(o => o.FechaConf)
                 .ToList();
             }
-            
+
             ViewBag.Buscar = search;
 
             ViewBag.IdUser = LoggedUser().Id;
@@ -72,7 +72,7 @@ namespace GoldConf.Controllers
             var conferencias = _context.Conferencias
                 .Where(o => o.Id == idConferencia)
                 .Include(o => o.Ponentes)
-                .ToList();
+                .FirstOrDefault();
 
             ViewBag.IdUser = LoggedUser().Id;
 
@@ -92,7 +92,7 @@ namespace GoldConf.Controllers
             else
             {
                 ViewBag.Ponentes = _context.Ponentes.ToList();
-                return View( new Conferencia());
+                return View(new Conferencia());
             }
         }
         [HttpPost]
@@ -138,60 +138,32 @@ namespace GoldConf.Controllers
             {
                 var conferencias = _context.Conferencias
                     .Include(o => o.Ponentes)
-                    .ToList();
-                return RedirectToAction("Conferencias", conferencias);
+                    .Where(o => o.Id == id)
+                    .FirstOrDefault();
+                return RedirectToAction("Detalle", conferencias);
             }
             else
             {
                 ViewBag.Ponentes = _context.Ponentes.ToList();
-                var account = _context.Conferencias.Where(o => o.Id == id).FirstOrDefault(); // si no lo encutra retorna un null
+                var account = _context.Conferencias.Where(o => o.Id == id).FirstOrDefault();
                 return View(account);
             }
         }
         [HttpPost]
         public ActionResult Edit(Conferencia conferencia, IFormFile image)
         {
-            if (LoggedUser().Username != "LanRhXXX")
+            if (ModelState.IsValid)
             {
-                var conferencias = _context.Conferencias
-                    .Include(o => o.Ponentes)
-                    .ToList();
-                return RedirectToAction("Conferencias", conferencias);
+                _context.Conferencias.Update(conferencia);
+                _context.SaveChanges();
+                return RedirectToAction("Detalle");
             }
             else
             {
-                if (ModelState.IsValid)
-                {
-                    _context.Conferencias.Update(conferencia);
-                    _context.SaveChanges();
-                    return RedirectToAction("Conferencias");
-                }
-                else
-                {
-                    ViewBag.Ponentes = _context.Ponentes.ToList();
-                    return View(conferencia);
-                }
+                ViewBag.Ponentes = _context.Ponentes.ToList();
+                return View(conferencia);
             }
         }
-
-        /*[HttpGet]
-        public ActionResult Delete(int id)
-        {
-            if (LoggedUser().Username != "LanRhXXX")
-            {
-                var conferencias = _context.Conferencias
-                    .Include(o => o.Ponentes)
-                    .ToList();
-                return RedirectToAction("Conferencias", conferencias);
-            }
-            else
-            {
-                var conferencia = _context.Conferencias.Where(o => o.Id == id).FirstOrDefault();
-                _context.Conferencias.Remove(conferencia);
-                _context.SaveChanges();
-                return RedirectToAction("Conferencias");
-            }
-        }*/
 
         [HttpGet]
         public ActionResult Comprar(Comprar comprar, int idF)
@@ -204,7 +176,7 @@ namespace GoldConf.Controllers
                 if (item.IdUser == LoggedUser().Id && item.IdConferencia == idF)
                 {
                     TempData["COMPRA"] = "Esta conferencia ya ha sido comprada";
-                    ModelState.AddModelError("Error","Conferencia ya comprada");
+                    ModelState.AddModelError("Error", "Conferencia ya comprada");
                 }
             }
             if (ModelState.IsValid)
@@ -263,9 +235,11 @@ namespace GoldConf.Controllers
                     .Where(o => o.Conferencia.FechaConf >= DateTime.Now)
                     .OrderBy(o => o.Conferencia.FechaConf)
                     .ToList();
-                        
+
             DateTime fecha = DateTime.Today;
             ViewBag.fecha = fecha;
+
+            Console.WriteLine("Fecha: " + fecha);
 
             ViewBag.Buscar = search;
 

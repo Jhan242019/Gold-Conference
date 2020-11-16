@@ -558,7 +558,6 @@ D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\staticwebassets\GoldC
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.dll
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.pdb
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.genruntimeconfig.cache
-D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\CompraConf.cshtml.g.cs
 C:\Users\JC\Downloads\Gold-Conference-master (1)\Gold-Conference-master\GoldConf\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\JC\Downloads\Gold-Conference-master (1)\Gold-Conference-master\GoldConf\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
 C:\Users\JC\Downloads\Gold-Conference-master (1)\Gold-Conference-master\GoldConf\bin\Debug\netcoreapp3.1\appsettings.json
@@ -1376,3 +1375,11 @@ E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4
 E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.genruntimeconfig.cache
 C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Futuras.cshtml.g.cs
 C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Pasadas.cshtml.g.cs
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Detalle.cshtml.g.cs
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Futuras.cshtml.g.cs
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Conferencia\Pasadas.cshtml.g.cs
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Detalle.cshtml.g.cs
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Ponente.cshtml.g.cs
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Registrar.cshtml.g.cs
+D:\Visual\T4_PROYECTO\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Edit.cshtml.g.cs
+C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Edit.cshtml.g.cs

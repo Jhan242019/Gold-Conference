@@ -20,8 +20,19 @@ namespace GoldConf.Models
         public decimal PrecioConf { get; set; }
         [Required]
         public string DetalleConf { get; set; }
+        [Required]
+        public string Ap1 { get; set; }
+        [Required]
+        public string Ap2 { get; set; }
+        [Required]
+        public string Ap3 { get; set; }
+        [Required]
+        public string Definicion { get; set; }
+        [Required]
+        public string Objetivo { get; set; }
+        [Required]
+        public string MetaFinal { get; set; }
         public Ponente Ponentes { get; set; }
         public List<Comprar> Compras { get; set; }
-
     }
 }

@@ -53,6 +53,17 @@ namespace GoldConf.Controllers
                 Where(o => o.Id == idPonente).
                 FirstOrDefault();
 
+            ViewBag.Conferencias = _context.Conferencias
+                .Where(o => o.PonenteId == idPonente)
+                .ToList();
+
+            ViewBag.Cursos = _context.Conferencias
+                .Where(o => o.PonenteId == idPonente)
+                .OrderByDescending(o => o.FechaConf)
+                .Count();
+
+            Console.WriteLine(ViewBag.Cursos);
+
             return View(Ponente);
         }
 
@@ -114,44 +125,31 @@ namespace GoldConf.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-        //    if (LoggedUser().Username != "LanRhXXX")
-        //    {
-        //        var conferencias = _context.Conferencias
-        //            .Include(o => o.Ponentes)
-        //            .ToList();
-        //        return RedirectToAction("Conferencias", conferencias);
-        //    }
-        //    else
-        //    {
-        //        ViewBag.Ponentes = _context.Ponentes.ToList();
-        //        var account = _context.Conferencias.Where(o => o.Id == id).FirstOrDefault(); // si no lo encutra retorna un null
-                return View();
-        //    }
+            if (LoggedUser().Username != "LanRhXXX")
+            {
+                var ponente = _context.Ponentes
+                    .ToList();
+                return RedirectToAction("Detalle", ponente);
+            }
+            else
+            {
+                var ponente = _context.Ponentes.Where(o => o.Id == id).FirstOrDefault();
+                return View(ponente);
+            }
         }
         [HttpPost]
-        public ActionResult Edit(Conferencia conferencia, IFormFile image)
+        public ActionResult Edit(Ponente ponente, IFormFile image)
         {
-        //    if (LoggedUser().Username != "LanRhXXX")
-        //    {
-        //        var conferencias = _context.Conferencias
-        //            .Include(o => o.Ponentes)
-        //            .ToList();
-        //        return RedirectToAction("Conferencias", conferencias);
-        //    }
-        //    else
-        //    {
-        //        if (ModelState.IsValid)
-        //        {
-        //            _context.Conferencias.Update(conferencia);
-        //            _context.SaveChanges();
-        //            return RedirectToAction("Conferencias");
-        //        }
-        //        else
-        //        {
-        //            ViewBag.Ponentes = _context.Ponentes.ToList();
-                    return View();
-        //        }
-        //    }
+            if (ModelState.IsValid)
+            {
+                _context.Ponentes.Update(ponente);
+                _context.SaveChanges();
+                return RedirectToAction("Detalle");
+            }
+            else
+            {
+                return View(ponente);
+            }
         }
 
     }
