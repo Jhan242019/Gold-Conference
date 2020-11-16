@@ -53,34 +53,38 @@
 
             @foreach (var conferencia in compra)
             {
-                @if (conferencia.Conferencia.FechaConf >= ViewBag.fecha.AddMonths(i) && conferencia.Conferencia.FechaConf < ViewBag.fecha.AddMonths(i + 1))
+                do
                 {
-                    <h3>
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        @string.Format("{0:dd MMMM yyyy}", ViewBag.fecha.AddMonths(i)) - @string.Format("{0:dd MMMM yyyy}", ViewBag.fecha.AddMonths(i + 1))
-                    </h3>
-                    @foreach (var item in compra)
+                    if (string.Format("{0:dd MMMM yyyy}", conferencia.Conferencia.FechaConf) == string.Format("{0:dd MMMM yyyy}", ViewBag.fecha.AddDays(i)))
                     {
-                        @if (item.Conferencia.FechaConf >= ViewBag.fecha.AddMonths(i) && item.Conferencia.FechaConf < ViewBag.fecha.AddMonths(i + 1))
+                        <h3>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            @string.Format("{0:dd MMMM yyyy}", ViewBag.fecha.AddDays(i))
+                        </h3>
+                        @foreach (var item in compra)
                         {
-                            <div class="dia">
-                                <p class="titulo">@item.Conferencia.TituloConf</p>
-                                <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Conferencia.Id">
-                                    <img class="imgFuturas" alt="" width="240" height="135" src="@item.Conferencia.ImagePath" srcset="@item.Conferencia.ImagePath 1x, @item.Conferencia.ImagePath 2x">
-                                </a>
+                            @if (string.Format("{0:dd MMMM yyyy}", item.Conferencia.FechaConf) == string.Format("{0:dd MMMM yyyy}", ViewBag.fecha.AddDays(i)))
+                            {
+                                <div class="dia">
+                                    <p class="titulo">@item.Conferencia.TituloConf</p>
+                                    <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Conferencia.Id">
+                                        <img class="imgFuturas" alt="" width="240" height="135" src="@item.Conferencia.ImagePath" srcset="@item.Conferencia.ImagePath 1x, @item.Conferencia.ImagePath 2x">
+                                    </a>
 
-                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.Conferencia.FechaConf)</p>
-                                <p><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.Conferencia.FechaConf)</p>
-                                <p><i class="fa fa-user" aria-hidden="true"></i> @item.Conferencia.Ponentes.NomApe</p>
-                                <div class="bntFut">
-                                    <a href="#" class="button hollow ">Acceder a conferencia</a>
+                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.Conferencia.FechaConf)</p>
+                                    <p><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.Conferencia.FechaConf)</p>
+                                    <p><i class="fa fa-user" aria-hidden="true"></i> @item.Conferencia.Ponentes.NomApe</p>
+                                    <div class="bntFut">
+                                        <a href="#" class="button hollow ">Acceder a conferencia</a>
+                                    </div>
+
                                 </div>
-
-                            </div>
+                            }
                         }
                     }
+
                     i++;
-                }
+                } while (conferencia.Conferencia.FechaConf >= ViewBag.fecha.AddDays(i - 1));
             }
             <!--.calendario-->
         </div>

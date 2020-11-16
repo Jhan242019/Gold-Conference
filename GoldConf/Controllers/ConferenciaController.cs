@@ -32,7 +32,7 @@ namespace GoldConf.Controllers
                 ViewBag.Usuario = "LanRhXXX";
                 conferencias = _context.Conferencias
                 .Include(o => o.Ponentes)
-                .OrderBy(o => o.FechaConf)
+                .OrderByDescending(o => o.FechaConf)
                 .Where(o => o.FechaConf >= DateTime.Now)
                 .ToList();
             }
@@ -205,7 +205,7 @@ namespace GoldConf.Controllers
                     .Include(o => o.Conferencia)
                     .Where(o => o.IdUser == LoggedUser().Id)
                     .Where(o => o.Conferencia.FechaConf < DateTime.Now)
-                    .OrderBy(o => o.Conferencia.FechaConf)
+                    .OrderByDescending(o => o.Conferencia.FechaConf)
                     .ToList();
 
             DateTime fecha = DateTime.Today;
@@ -238,9 +238,7 @@ namespace GoldConf.Controllers
 
             DateTime fecha = DateTime.Today;
             ViewBag.fecha = fecha;
-
-            Console.WriteLine("Fecha: " + fecha);
-
+            
             ViewBag.Buscar = search;
 
             if (!string.IsNullOrEmpty(search))

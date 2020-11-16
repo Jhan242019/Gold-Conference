@@ -71,7 +71,8 @@
                 <p class="texto-aprendiz"><i class="fa fa-calendar" aria-hidden="true"></i>  @string.Format("{0:dd MMMM yyyy}", conferencias.FechaConf)</p>
                 <p class="texto-aprendiz"><i class="fa fa-clock-o" aria-hidden="true"></i>  @string.Format("{0: hh:mm tt}", conferencias.FechaConf)</p>
                 <p class="texto-aprendiz">Asistentes inscritos: @ViewBag.Compra</p>
-
+                <hr color="orange" size=6>
+                <br />
                 <div class="card">
                     <h3 class="TitCard">LO QUE APRENDERÁS EN @conferencias.TituloConf</h3>
                     <p class="texto-aprendiz"><i class="fa fa-check" aria-hidden="true"></i> @conferencias.Ap1</p>
@@ -120,59 +121,7 @@
         <!-- END .invitado -->
     </div>
     <!-- END lista-invitados -->
-    <!-- END .invitados -->
-    <!--.Comentarios-->
-    <div class="contenedor">
-        <br />
-        <h4 class="TitCardDet">Valoraciones y Comentarios</h4>
 
-
-        <hr color="orange" size=6>
-
-        <div class="contenedor">
-            <nav class="menu-programa">
-                <a href="#5">
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i>
-                </a>
-                <a href="#4">
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-                </a>
-                <a href="#3">
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-                </a>
-                <a href="#2">
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-                </a>
-                <a href="#1">
-                    <i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i><i class="fa fa-star-o" aria-hidden="true"></i>
-                </a>
-            </nav>
-
-            <div id="5" class="info-curso ocultar clearfix">
-                <p> 5 star</p>
-            </div>
-            <!--#talleres-->
-
-            <div id="4" class="info-curso ocultar clearfix">
-                <p> 4 star</p>
-            </div>
-            <!--#talleres-->
-
-            <div id="3" class="info-curso ocultar clearfix">
-                <p> 3 star</p>
-            </div>
-
-            <div id="2" class="info-curso ocultar clearfix">
-                <p> 2 star</p>
-            </div>
-
-            <div id="1" class="info-curso ocultar clearfix">
-                <p> 1 star</p>
-            </div>
-            <!--#talleres-->
-        </div>
-        <!--.Comentarios-->
-    </div>
     <footer class="site-footer">
         <div class="contenedor clearfix">
             <div class="footer-informacion">

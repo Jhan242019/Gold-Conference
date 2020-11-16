@@ -1383,3 +1383,4 @@ D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\P
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Registrar.cshtml.g.cs
 D:\Visual\T4_PROYECTO\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Edit.cshtml.g.cs
 C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Edit.cshtml.g.cs
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Edit.cshtml.g.cs

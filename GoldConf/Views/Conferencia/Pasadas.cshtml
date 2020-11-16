@@ -53,38 +53,37 @@
         <div class="calendario">
             @foreach (var conferencia in compra)
             {
-                @if (conferencia.Conferencia.FechaConf <= ViewBag.fecha.AddMonths(i) && conferencia.Conferencia.FechaConf > ViewBag.fecha.AddMonths(i - 1))
+                do
                 {
-                    <h3>
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        @ViewBag.fecha.AddMonths(i - 1) - @ViewBag.fecha.AddMonths(i)
-                    </h3>
-                    <ul class="lista-precios clearfix">
+                    if (string.Format("{0:MMMM}", conferencia.Conferencia.FechaConf) == string.Format("{0:MMMM}", ViewBag.fecha.AddMonths(i)))
+                    {
+                        <h3>
+                            <i class="fa fa-calendar" aria-hidden="true"></i>
+                            @string.Format("{0:MMMM}", ViewBag.fecha.AddDays(i))
+                        </h3>
                         @foreach (var item in compra)
                         {
-                            @if (item.Conferencia.FechaConf <= ViewBag.fecha.AddMonths(i) && item.Conferencia.FechaConf > ViewBag.fecha.AddMonths(i - 1))
+                            @if (string.Format("{0:MMMM}", item.Conferencia.FechaConf) == string.Format("{0:MMMM}", ViewBag.fecha.AddMonths(i)))
                             {
-                                <li>
-                                    <div class="tabla-precio">
-                                        <h3>@item.Conferencia.TituloConf</h3>
-                                        <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Conferencia.Id">
-                                            <img alt="" width="240" height="135" src="@item.Conferencia.ImagePath" srcset="@item.Conferencia.ImagePath 1x, @item.Conferencia.ImagePath 2x">
-                                        </a>
-                                        @*<div class="course-card--image-wrapper--Sxd90"> <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x"> </div>*@
-                                        <div> __________________________</div>
-                                        <ul>
-                                            <li><i class="fa fa-user" aria-hidden="true"></i> @item.Conferencia.Ponentes.NomApe</li>
-                                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.Conferencia.FechaConf)</li>
-                                            <li><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.Conferencia.FechaConf)</li>
-                                        </ul>
-                                        <a href="#" class="button hollow">Revisar a conferencia</a>
+                                <div class="dia">
+                                    <p class="titulo">@item.Conferencia.TituloConf</p>
+                                    <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Conferencia.Id">
+                                        <img class="imgFuturas" alt="" width="240" height="135" src="@item.Conferencia.ImagePath" srcset="@item.Conferencia.ImagePath 1x, @item.Conferencia.ImagePath 2x">
+                                    </a>
+
+                                    <p><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.Conferencia.FechaConf)</p>
+                                    <p><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.Conferencia.FechaConf)</p>
+                                    <p><i class="fa fa-user" aria-hidden="true"></i> @item.Conferencia.Ponentes.NomApe</p>
+                                    <div class="bntFut">
+                                        <a href="#" class="button hollow ">Acceder a conferencia</a>
                                     </div>
-                                </li>
+
+                                </div>
                             }
                         }
-                    </ul>
-                    i++;
-                }
+                    }
+                    i--;
+                } while (conferencia.Conferencia.FechaConf <= ViewBag.fecha.AddMonths(i + 1));
             }
         </div>
     </section>
