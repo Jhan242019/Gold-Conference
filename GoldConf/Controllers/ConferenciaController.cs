@@ -140,7 +140,7 @@ namespace GoldConf.Controllers
                     .Include(o => o.Ponentes)
                     .Where(o => o.Id == id)
                     .FirstOrDefault();
-                return RedirectToAction("Detalle", conferencias);
+                return RedirectToAction("Conferencias", conferencias);
             }
             else
             {
@@ -156,7 +156,7 @@ namespace GoldConf.Controllers
             {
                 _context.Conferencias.Update(conferencia);
                 _context.SaveChanges();
-                return RedirectToAction("Detalle");
+                return RedirectToAction("Conferencias");
             }
             else
             {

@@ -129,7 +129,7 @@ namespace GoldConf.Controllers
             {
                 var ponente = _context.Ponentes
                     .ToList();
-                return RedirectToAction("Detalle", ponente);
+                return RedirectToAction("Ponente", ponente);
             }
             else
             {
@@ -138,13 +138,13 @@ namespace GoldConf.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Edit(Ponente ponente, IFormFile image)
+        public ActionResult Edit(Ponente ponente)
         {
             if (ModelState.IsValid)
             {
                 _context.Ponentes.Update(ponente);
                 _context.SaveChanges();
-                return RedirectToAction("Detalle");
+                return RedirectToAction("Ponente");
             }
             else
             {
