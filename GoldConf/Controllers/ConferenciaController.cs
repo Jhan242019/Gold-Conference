@@ -28,25 +28,26 @@ namespace GoldConf.Controllers
             var ponentes = _context.Ponentes.ToList();
             var conferencias = _context.Conferencias.ToList();
 
-            ViewBag.Compra = _context.Compras.
-                Where(o => o.IdUser == LoggedUser().Id).
-                ToList();
-
             if (LoggedUser().Username != "LanRhXXX")
             {
                 ViewBag.Usuario = "LanRhXXX";
                 conferencias = _context.Conferencias
-                .Include(o => o.Ponentes)
-                .OrderByDescending(o => o.FechaConf)
-                .Where(o => o.FechaConf >= DateTime.Now)
-                .ToList();
+                    .Include(o => o.Ponentes)
+                    .OrderByDescending(o => o.FechaConf)
+                    .Where(o => o.FechaConf >= DateTime.Now)
+                    .ToList();
+                ViewBag.Compra = _context.Compras.
+                    Where(o => o.IdUser == LoggedUser().Id).
+                    ToList();
             }
             else
             {
                 conferencias = _context.Conferencias
-                .Include(o => o.Ponentes)
-                .OrderByDescending(o => o.FechaConf)
-                .ToList();
+                    .Include(o => o.Ponentes)
+                    .OrderByDescending(o => o.FechaConf)
+                    .ToList();
+                ViewBag.Compra = _context.Compras.
+                    ToList();
             }
 
             ViewBag.Buscar = search;

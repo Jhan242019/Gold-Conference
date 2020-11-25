@@ -46,12 +46,18 @@ namespace GoldConf.Controllers
         [HttpGet]
         public ActionResult Detalle(int idPonente)
         {
-            ViewBag.Compra = _context.Compras.
-                Where(o => o.IdUser == LoggedUser().Id).
-                ToList();
-
             if (LoggedUser().Username != "LanRhXXX")
+            {
                 ViewBag.Usuario = "LanRhXXX";
+                ViewBag.Compra = _context.Compras.
+                    Where(o => o.IdUser == LoggedUser().Id).
+                    ToList();
+            }
+            else
+            {
+                ViewBag.Compra = _context.Compras.
+                    ToList();
+            }
 
             var Ponente = _context.Ponentes.
                 Where(o => o.Id == idPonente).

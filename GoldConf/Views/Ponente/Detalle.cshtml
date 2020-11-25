@@ -2,6 +2,7 @@
     var conferencias = (List<Conferencia>)ViewBag.Conferencias;
     var compras = (List<Comprar>)ViewBag.Compra;
     bool estado = false;
+    int presentes = 0;
 }
 
 <head>
@@ -94,54 +95,74 @@
     <div class="contenedor">
         <section class="seccion contenedor">
 
-            <h4 class="TitCardDet">Mis cursos (@ViewBag.Cursos)</h4>
+            <h4 class="TitCardDet">Mis próximas conferencias (@ViewBag.Cursos)</h4>
             <br />
-            <div class="calendario">
-                <ul class="lista-precios clearfix">
-                    @foreach (var item in conferencias)
-                    {
-                        <li>
-                            <div class="tabla-precio">
-                                <h3>@item.TituloConf</h3>
-
-                                <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Id">
-                                    <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x">
-                                </a>
-
-                                <div> __________________________</div>
-                                <ul>
-                                    <li><i class="fa fa-user" aria-hidden="true"></i> @item.Ponentes.NomApe</li>
-                                    <li><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.FechaConf)</li>
-                                    <li><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.FechaConf)</li>
-                                </ul>
-                                @if (ViewBag.Usuario != "LanRhXXX")
+            <ul class="lista-precios clearfix">
+                @foreach (var item in conferencias)
+                {
+                    <li>
+                        <div class="tabla-precio">
+                            @foreach (var compra in compras)
+                            {
+                                if (compra.IdConferencia == @item.Id)
                                 {
-                                    <a href="/conferencia/Edit?id=@item.Id" class="button hollow"> Soy Admin xde</a>
+                                    estado = true;
+                                    presentes++;
+                                }
+                            }
+                            @if (estado)
+                            {
+                                <div class="calendariocomprado">
+                                    <h3>@item.TituloConf</h3>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="calendario">
+                                    <h3>@item.TituloConf</h3>
+                                </div>
+                            }
+
+                            <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Id">
+                                <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x">
+                            </a>
+
+                            <div> __________________________</div>
+                            <ul>
+                                <li><i class="fa fa-user" aria-hidden="true"></i> @item.Ponentes.NomApe</li>
+                                <li><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.FechaConf)</li>
+                                <li><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.FechaConf)</li>
+                            </ul>
+                            @if (ViewBag.Usuario != "LanRhXXX")
+                            {
+                                <a href="/#" class="button-green hollow"> Registrados: @presentes</a>
+                                presentes = 0;
+                            }
+                            else
+                            {
+                                @foreach (var compra in compras)
+                                {
+                                    if (compra.IdConferencia == @item.Id)
+                                    {
+                                        estado = true;
+                                    }
+                                }
+                                @if (estado)
+                                {
+                                    <a href="/#" class="button-green hollow">Conferencia comprada</a>
+                                    estado = false;
+                                    presentes = 0;
                                 }
                                 else
                                 {
-                                    @foreach (var compra in compras)
-                                    {
-                                        if (compra.IdConferencia == @item.Id)
-                                        {
-                                            estado = true;
-                                        }
-                                    }
-                                    @if (estado)
-                                    {
-                                        <a href="/#" class="button hollow">Conferencia comprada</a>
-                                        estado = false;
-                                    }
-                                    else
-                                    {
-                                        <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
-                                    }
+                                    <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
+                                    presentes = 0;
                                 }
-                            </div>
-                        </li>
-                    }
-                </ul>
-            </div>
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
         </section>
     </div>
 

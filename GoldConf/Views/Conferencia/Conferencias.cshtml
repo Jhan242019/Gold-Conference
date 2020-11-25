@@ -2,6 +2,7 @@
     var conferencias = (List<Conferencia>)Model;
     var compras = (List<Comprar>)ViewBag.Compra;
     bool estado = false;
+    int presentes = 0;
 }
 
 <link href="/css/Detalle.css" rel="stylesheet" />
@@ -75,70 +76,67 @@
         }
 
 
-            <ul class="lista-precios clearfix">
-                @foreach (var item in conferencias)
-                {
-                    <li>
-                        <div class="tabla-precio">
-                            @foreach (var compra in compras)
+        <ul class="lista-precios clearfix">
+            @foreach (var item in conferencias)
+            {
+                <li>
+                    <div class="tabla-precio">
+                        @foreach (var compra in compras)
+                        {
+                            if (compra.IdConferencia == item.Id)
                             {
-                                if (compra.IdConferencia == @item.Id)
-                                {
-                                    estado = true;
-                                }
+                                presentes++;
+                                estado = true;
                             }
+                        }
+                        @if (estado)
+                        {
+                            <div class="calendariocomprado">
+                                <h3>@item.TituloConf</h3>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="calendario">
+                                <h3>@item.TituloConf</h3>
+                            </div>
+                        }
+
+                        <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Id">
+                            <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x">
+                        </a>
+
+                        @*<div class="course-card--image-wrapper--Sxd90"> <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x"> </div>*@
+                        <div> __________________________</div>
+                        <ul>
+                            <li><i class="fa fa-user" aria-hidden="true"></i> @item.Ponentes.NomApe</li>
+                            <li><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.FechaConf)</li>
+                            <li><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.FechaConf)</li>
+                        </ul>
+                        @if (ViewBag.Usuario != "LanRhXXX")
+                        {
+                            <a href="/#" class="button-green hollow"> Registrados: @presentes</a>
+                            presentes = 0;
+                        }
+                        else
+                        {
                             @if (estado)
                             {
-                                <div class="calendariocomprado">
-                                    <h3>@item.TituloConf</h3>
-                                </div>
+                                <a href="#" class="button-green hollow">Conferencia comprada</a>
                                 estado = false;
+                                presentes = 0;
                             }
                             else
                             {
-                                <div class="calendario">
-                                    <h3>@item.TituloConf</h3>
-                                </div>
+                                <a href="#" class="button hollow" onclick="Registrar()">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
+                                <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
+                                presentes = 0;
                             }
-
-                            <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Id">
-                                <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x">
-                            </a>
-
-                            @*<div class="course-card--image-wrapper--Sxd90"> <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x"> </div>*@
-                            <div> __________________________</div>
-                            <ul>
-                                <li><i class="fa fa-user" aria-hidden="true"></i> @item.Ponentes.NomApe</li>
-                                <li><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.FechaConf)</li>
-                                <li><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.FechaConf)</li>
-                            </ul>
-                            @if (ViewBag.Usuario != "LanRhXXX")
-                            {
-                                <a href="/conferencia/Edit?id=@item.Id" class="button hollow"> Soy Admin xde</a>
-                            }
-                            else
-                            {
-                                @foreach (var compra in compras)
-                                {
-                                    if (compra.IdConferencia == @item.Id)
-                                    {
-                                        estado = true;
-                                    }
-                                }
-                                @if (estado)
-                                {
-                                    <a href="#" class="button hollow">Conferencia comprada</a>
-                                    estado = false;
-                                }
-                                else
-                                {
-                                    <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
-                                }
-                            }
-                        </div>
-                    </li>
-                }
-            </ul>
+                        }
+                    </div>
+                </li>
+            }
+        </ul>
     </section>
 
     <footer class="site-footer">
@@ -176,4 +174,44 @@
 
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="/js/Nuestro.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>
+
+<script>
+    function Registrar() {
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+
+        swalWithBootstrapButtons.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'No, cancel!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                    'Deleted!',
+                    'Your file has been deleted.',
+                    'success'
+                )
+            } else if (
+                /* Read more about handling dismissals below */
+                result.dismiss === Swal.DismissReason.cancel
+            ) {
+                swalWithBootstrapButtons.fire(
+                    'Cancelled',
+                    'Your imaginary file is safe :)',
+                    'error'
+                )
+            }
+        })
+    }
+</script>
