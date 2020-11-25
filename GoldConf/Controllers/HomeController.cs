@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using GoldConf.Models;
+using System.Data.Entity;
 
 namespace GoldConf.Controllers
 {
@@ -22,9 +23,17 @@ namespace GoldConf.Controllers
 
         public IActionResult Index()
         {
-            ViewBag.Ponentes = _context.Ponentes.ToList();
             var Ponente = _context.Ponentes
                 .ToList();
+
+            ViewBag.Conferencia = _context.Conferencias.
+                Include(o => o.Ponentes).
+                Where(o => o.FechaConf >= DateTime.Now).
+                ToList();
+            var compra = _context.Compras.
+                ToList();
+
+            Console.WriteLine(compra.Count());
             return View(Ponente);
         }
 

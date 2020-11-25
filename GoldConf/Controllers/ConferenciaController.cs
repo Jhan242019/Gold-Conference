@@ -27,6 +27,11 @@ namespace GoldConf.Controllers
         {
             var ponentes = _context.Ponentes.ToList();
             var conferencias = _context.Conferencias.ToList();
+
+            ViewBag.Compra = _context.Compras.
+                Where(o => o.IdUser == LoggedUser().Id).
+                ToList();
+
             if (LoggedUser().Username != "LanRhXXX")
             {
                 ViewBag.Usuario = "LanRhXXX";
@@ -195,6 +200,9 @@ namespace GoldConf.Controllers
         [HttpGet]
         public ActionResult Pasadas(string search)
         {
+            if (LoggedUser().Username != "LanRhXXX")
+                ViewBag.Usuario = "LanRhXXX";
+
             var ponente = _context.Ponentes.ToList();
 
             var conferencia = _context.Conferencias
@@ -223,6 +231,9 @@ namespace GoldConf.Controllers
         [HttpGet]
         public ActionResult Futuras(string search)
         {
+            if (LoggedUser().Username != "LanRhXXX")
+                ViewBag.Usuario = "LanRhXXX";
+
             var ponente = _context.Ponentes.ToList();
 
             var conferencia = _context.Conferencias

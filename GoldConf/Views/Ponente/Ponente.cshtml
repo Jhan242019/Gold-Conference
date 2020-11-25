@@ -20,9 +20,16 @@
             </div>
 
             <nav class="navegacion-principal clearfix">
-                <a href="/conferencia/Pasadas">Mis Conferencias</a>
-                <a href="/conferencia/Futuras">Calendario</a>
-                <a href="#">Invitados</a>
+                @if (ViewBag.Usuario != "LanRhXXX")
+                {
+                    <a href="/conferencia/conferencias">Conferencias</a>
+                }
+                else
+                {
+                    <a href="/conferencia/Pasadas">Mis Conferencias</a>
+                    <a href="/conferencia/Futuras">Calendario</a>
+                    <a href="/conferencia/conferencias">Conferencias</a>
+                }
                 @if (!User.Identity.IsAuthenticated)
                 {
                     <a href="/Auth/Login">Login</a>

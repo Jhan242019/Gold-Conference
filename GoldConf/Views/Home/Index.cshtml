@@ -8,6 +8,17 @@
     {
         n = ponentes.Count();
     }
+    var conferencia = (List<Conferencia>)ViewBag.Conferencia;
+    int f;
+    if (conferencia.Count() > 2)
+    {
+        f = 2;
+    }
+    else
+    {
+        f = ponentes.Count();
+    }
+
 }
 
 <head>
@@ -83,7 +94,8 @@
                 <a href="ponente/ponente">Invitados</a>
                 @if (!User.Identity.IsAuthenticated)
                 {
-                    <a href="/Auth/Login">Login</a>}
+                    <a href="/Auth/Login">Login</a>
+                }
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a href="/Auth/Logout"><i class="fa fa-power-off" aria-hidden="true"></i></a>
@@ -116,26 +128,22 @@
             <div class="contenedor">
                 <div class="programa-evento">
                     <h2>Programa del Evento</h2>
-
                     <nav class="menu-programa">
                         <a href="#conferencias">
                             <i class="fa fa-comment" aria-hidden="true"></i> Conferencias
                         </a>
                     </nav>
-
                     <div id="conferencias" class="info-curso ocultar clearfix">
-                        <div class="detalle-evento">
-                            <h3>Como ser freelancer</h3>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> 10:00</p>
-                            <p><i class="fa fa-calendar" aria-hidden="true"></i> 12-Oct-2020</p>
-                            <p><i class="fa fa-user" aria-hidden="true"></i> Susan Sanchez</p>
-                        </div>
-                        <div class="detalle-evento">
-                            <h3>Tecnologías del Futuro PHP</h3>
-                            <p><i class="fa fa-clock-o" aria-hidden="true"></i> 15:00</p>
-                            <p><i class="fa fa-calendar" aria-hidden="true"></i> 20-Oct-2020</p>
-                            <p><i class="fa fa-user" aria-hidden="true"></i> Juan Sanchez</p>
-                        </div>
+                        @for (int i = 0; i < f; i++)
+                        {
+                            var item = conferencia[i];
+                            <div class="detalle-evento">
+                                <h3>@item.TituloConf</h3>
+                                <p><i class="fa fa-clock-o" aria-hidden="true"></i> @string.Format("{0: hh:mm tt}", item.FechaConf)</p>
+                                <p><i class="fa fa-calendar" aria-hidden="true"></i> @string.Format("{0:dd MMMM yyyy}", item.FechaConf)</p>
+                                <p><i class="fa fa-user" aria-hidden="true"></i> @item.Ponentes.NomApe</p>
+                            </div>
+                        }
                         <a href="conferencia/conferencias" class="button float-right">Ver todos</a>
                     </div>
                 </div>
