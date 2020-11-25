@@ -73,13 +73,33 @@
 
             </div>
         }
-        <div class="calendario">
+
+
             <ul class="lista-precios clearfix">
                 @foreach (var item in conferencias)
                 {
                     <li>
                         <div class="tabla-precio">
-                            <h3>@item.TituloConf</h3>
+                            @foreach (var compra in compras)
+                            {
+                                if (compra.IdConferencia == @item.Id)
+                                {
+                                    estado = true;
+                                }
+                            }
+                            @if (estado)
+                            {
+                                <div class="calendariocomprado">
+                                    <h3>@item.TituloConf</h3>
+                                </div>
+                                estado = false;
+                            }
+                            else
+                            {
+                                <div class="calendario">
+                                    <h3>@item.TituloConf</h3>
+                                </div>
+                            }
 
                             <a class="course-card--image-wrapper--Sxd90" href="/conferencia/Detalle?idConferencia=@item.Id">
                                 <img alt="" width="240" height="135" src="@item.ImagePath" srcset="@item.ImagePath 1x, @item.ImagePath 2x">
@@ -107,7 +127,7 @@
                                 }
                                 @if (estado)
                                 {
-                                    <a href="/#" class="button hollow">Conferencia comprada</a>
+                                    <a href="#" class="button hollow">Conferencia comprada</a>
                                     estado = false;
                                 }
                                 else
@@ -119,7 +139,6 @@
                     </li>
                 }
             </ul>
-        </div>
     </section>
 
     <footer class="site-footer">

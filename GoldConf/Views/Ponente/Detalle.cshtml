@@ -43,7 +43,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a href="/Auth/Logout"><i class="fa fa-power-off" aria-hidden="true"></i></a>
-                    <a href="/#">@User.Claims.FirstOrDefault().Value</a>
+                    <a href="#">@User.Claims.FirstOrDefault().Value</a>
                 }
             </nav>
         </div>

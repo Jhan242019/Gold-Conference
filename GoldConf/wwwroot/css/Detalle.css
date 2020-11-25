@@ -445,5 +445,17 @@ div.detalle-evento {
     }
 }
 
+/** Calendario **/
+div.calendariocomprado h3 {
+    background-color: #18fe65;
+    clear: both;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
 
-
+div.calendariocomprado::after {
+    clear: both;
+    display: block;
+    content: '';
+}
