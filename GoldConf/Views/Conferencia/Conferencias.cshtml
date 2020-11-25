@@ -128,7 +128,7 @@
                             }
                             else
                             {
-                                <a href="#" class="button hollow" onclick="Registrar()">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
+                                <a href="#" class="button hollow" onclick="Registrar(@item.Id)">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
                                 <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
                                 presentes = 0;
                             }
@@ -178,7 +178,8 @@
 </body>
 
 <script>
-    function Registrar() {
+    function Registrar(idF) {
+        var dataString = "idF=" + idF;
         const swalWithBootstrapButtons = Swal.mixin({
             customClass: {
                 confirmButton: 'btn btn-success',
@@ -188,18 +189,27 @@
         })
 
         swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: '¿Estas seguro?',
+            text: "Estas por comprar esta conferencia",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
+            confirmButtonText: 'Si, comprar!',
+            cancelButtonText: 'No, cancelar!',
             reverseButtons: true
         }).then((result) => {
             if (result.isConfirmed) {
+                $.ajax({
+                    url: "/conferencia/comprar",
+                    type: "get",
+                    data: dataString
+                }).done(function (html) {
+                    location.reload();
+                });
+
                 swalWithBootstrapButtons.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
+
+                    'Comprado!',
+                    'Se añadió a tu listas de conferencias',
                     'success'
                 )
             } else if (
@@ -207,8 +217,8 @@
                 result.dismiss === Swal.DismissReason.cancel
             ) {
                 swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
+                    'Cancelado',
+                    'Puedes ver el detalle de las conferencias',
                     'error'
                 )
             }

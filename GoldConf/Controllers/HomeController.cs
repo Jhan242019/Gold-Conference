@@ -32,8 +32,6 @@ namespace GoldConf.Controllers
                 ToList();
             var compra = _context.Compras.
                 ToList();
-
-            Console.WriteLine(compra.Count());
             return View(Ponente);
         }
 

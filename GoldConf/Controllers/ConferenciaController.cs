@@ -71,8 +71,6 @@ namespace GoldConf.Controllers
             var compra = _context.Compras.ToList().Where(o => o.IdConferencia == idConferencia);
             ViewBag.Compra = compra.Count();
 
-            Console.WriteLine("Numero de veces compradas: " + ViewBag.Compra);
-
             ViewBag.Ponentes = _context.Ponentes.ToList();
 
             var conferencias = _context.Conferencias
@@ -174,6 +172,7 @@ namespace GoldConf.Controllers
         [HttpGet]
         public ActionResult Comprar(Comprar comprar, int idF)
         {
+            Console.WriteLine("entra aca?" + idF);
             var compra = _context.Compras.
                 ToList();
 

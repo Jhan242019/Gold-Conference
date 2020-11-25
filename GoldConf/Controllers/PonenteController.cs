@@ -72,8 +72,6 @@ namespace GoldConf.Controllers
                 .OrderByDescending(o => o.FechaConf)
                 .Count();
 
-            Console.WriteLine(ViewBag.Cursos);
-
             return View(Ponente);
         }
 
