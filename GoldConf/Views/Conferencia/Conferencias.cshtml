@@ -128,8 +128,7 @@
                             }
                             else
                             {
-                                <a href="#" class="button hollow" onclick="Registrar(@item.Id)">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
-                                <a href="/conferencia/comprar?idF=@item.Id" class="button hollow">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
+                                <a href="#" class="button hollow" onclick="Registrar(@item.Id,'@item.TituloConf')">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
                                 presentes = 0;
                             }
                         }
@@ -178,48 +177,27 @@
 </body>
 
 <script>
-    function Registrar(idF) {
+    function Registrar(idF,titulo) {
         var dataString = "idF=" + idF;
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
-        })
-
-        swalWithBootstrapButtons.fire({
-            title: '¿Estas seguro?',
-            text: "Estas por comprar esta conferencia",
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: "Estás por comprar la conferencia " + titulo,
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Si, comprar!',
-            cancelButtonText: 'No, cancelar!',
-            reverseButtons: true
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Si, comprar!'
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
                     url: "/conferencia/comprar",
                     type: "get",
                     data: dataString
-                }).done(function (html) {
-                    location.reload();
                 });
-
-                swalWithBootstrapButtons.fire(
-
+                Swal.fire(
                     'Comprado!',
                     'Se añadió a tu listas de conferencias',
                     'success'
-                )
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelado',
-                    'Puedes ver el detalle de las conferencias',
-                    'error'
                 )
             }
         })

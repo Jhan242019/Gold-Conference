@@ -499,14 +499,6 @@ div.calendariocomprado::after {
     content: '';
 }
 
-h2.swal2-title {
-    margin-top: 0;
-    margin-bottom: 0.5rem;
-    font-weight: 500;
-    line-height: 1.2;
-    font-size: 2rem;
-}
-
 .btn {
     display: inline-block;
     font-weight: 400;
