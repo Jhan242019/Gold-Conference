@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting;
+using PayPal.Api;
 
 namespace GoldConf.Controllers
 {
@@ -27,7 +29,9 @@ namespace GoldConf.Controllers
         {
             var ponentes = _context.Ponentes.ToList();
             var conferencias = _context.Conferencias.ToList();
-
+            ViewBag.Cuenta = _context.Cuentas
+                .Where(o => o.UserId == LoggedUser().Id)
+                .ToList();
             if (LoggedUser().Username != "LanRhXXX")
             {
                 ViewBag.Usuario = "LanRhXXX";
@@ -170,30 +174,48 @@ namespace GoldConf.Controllers
         }
 
         [HttpGet]
-        public ActionResult Comprar(Comprar comprar, int idF)
+        public ActionResult Comprar(Comprar comprar, int idF, string titulo, decimal monto)
         {
-            Console.WriteLine("entra aca?" + idF);
-            var compra = _context.Compras.
+            var cuenta = _context.Cuentas.
+                Where(o => o.UserId == LoggedUser().Id).
+                ToList();
+            if (cuenta.Count() > 0)
+            {
+                var compra = _context.Compras.
                 ToList();
 
-            foreach (var item in compra)
-            {
-                if (item.IdUser == LoggedUser().Id && item.IdConferencia == idF)
+                foreach (var item in compra)
                 {
-                    TempData["COMPRA"] = "Esta conferencia ya ha sido comprada";
-                    ModelState.AddModelError("Error", "Conferencia ya comprada");
+                    if (item.IdUser == LoggedUser().Id && item.IdConferencia == idF)
+                    {
+                        TempData["COMPRA"] = "Esta conferencia ya ha sido comprada";
+                        ModelState.AddModelError("Error", "Conferencia ya comprada");
+                    }
+                }
+                if (ModelState.IsValid)
+                {
+                    foreach (var item in cuenta)
+                    {
+                        int idCuenta = item.Id;
+                        var transaccion = new Transaccion
+                        {
+                            CuentaId = idCuenta,
+                            FechaHora = DateTime.Now,
+                            Tipo = "Compra",
+                            Amount = monto * -1,
+                            Motivo = "Conferencia " + titulo + " Comprada"
+                        };
+                        _context.Transacciones.Add(transaccion);
+                        ModificaMontoCuenta(transaccion.CuentaId);
+                    }
+                    comprar.IdUser = LoggedUser().Id;
+                    comprar.IdConferencia = idF;
+                    _context.Compras.Add(comprar);
+                    _context.SaveChanges();
+
+                    return RedirectToAction("Conferencias");
                 }
             }
-            if (ModelState.IsValid)
-            {
-                comprar.IdUser = LoggedUser().Id;
-                comprar.IdConferencia = idF;
-                _context.Compras.Add(comprar);
-                _context.SaveChanges();
-
-                return RedirectToAction("Conferencias");
-            }
-
             return RedirectToAction("Conferencias");
         }
 
@@ -249,7 +271,7 @@ namespace GoldConf.Controllers
 
             DateTime fecha = DateTime.Today;
             ViewBag.fecha = fecha;
-            
+
             ViewBag.Buscar = search;
 
             if (!string.IsNullOrEmpty(search))
@@ -259,5 +281,27 @@ namespace GoldConf.Controllers
             }
             return View(compra);
         }
+        private void ModificaMontoCuenta(int cuentaId)
+        {
+            var transaccions = _context.Transacciones.ToList();
+            var cuenta = _context.Cuentas
+                .Include(o => o.Transaccions)
+                .FirstOrDefault(o => o.Id == cuentaId);
+
+            var total = cuenta.Transaccions.Sum(o => o.Amount);
+            cuenta.Amount = total;
+            _context.SaveChanges();
+
+        }
+        ////work with Paypal Payment
+        //private Payment payment;
+
+        //// Create a payment using a APIContext
+        //private Payment CreatePAyment(APIContext apiContext,string redirectUrl)
+        //{
+        //    var listItems = new ItemList(){items = new List<Item>()};
+
+        //}
+
     }
 }

@@ -530,8 +530,6 @@ D:\Visual\Gold-Conference\GoldConf\bin\Debug\netcoreapp3.1\runtimes\win\lib\nets
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.csprojAssemblyReference.cache
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.AssemblyInfoInputs.cache
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.AssemblyInfo.cs
-D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.csproj.CoreCompileInputs.cache
-D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.MvcApplicationPartsAssemblyInfo.cache
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.RazorAssemblyInfo.cache
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.RazorAssemblyInfo.cs
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.TagHelpers.input.cache
@@ -1384,3 +1382,10 @@ D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\R
 D:\Visual\T4_PROYECTO\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Edit.cshtml.g.cs
 C:\Users\Edwin Vásquez\Downloads\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Edit.cshtml.g.cs
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Edit.cshtml.g.cs
+D:\Visual\Gold-Conference\GoldConf\bin\Debug\netcoreapp3.1\PayPal.dll
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.csproj.CoreCompileInputs.cache
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\GoldConf.MvcApplicationPartsAssemblyInfo.cache
+D:\Visual\Gold-Conference\GoldConf\bin\Debug\netcoreapp3.1\web.config
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Cuenta\Index.cshtml.g.cs
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Cuenta\Crear.cshtml.g.cs
+D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Cuenta\Transaccion.cshtml.g.cs

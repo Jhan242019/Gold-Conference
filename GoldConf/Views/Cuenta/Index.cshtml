@@ -1,7 +1,9 @@
-﻿@{ var ponentes = (List<Ponente>)Model; }
+﻿@{
+    // List<Account> cuentitas = ((List<Account>)ViewBag.Accounts); // forma A
+    List<Cuenta> cuentitas = ((List<Cuenta>)Model); // forma B
+}
 
 <link href="/css/Detalle.css" rel="stylesheet" />
-
 
 <body class="index">
 
@@ -23,12 +25,13 @@
                 @if (ViewBag.Usuario != "LanRhXXX")
                 {
                     <a href="/conferencia/conferencias">Conferencias</a>
+                    <a href="/Ponente/ponente">Invitados</a>
                 }
                 else
                 {
                     <a href="/conferencia/Pasadas">Mis Conferencias</a>
                     <a href="/conferencia/Futuras">Calendario</a>
-                    <a href="/conferencia/conferencias">Conferencias</a>
+                    <a href="/Ponente/ponente">Invitados</a>
                 }
                 @if (!User.Identity.IsAuthenticated)
                 {
@@ -37,7 +40,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a href="/Auth/Logout"><i class="fa fa-power-off" aria-hidden="true"></i></a>
-                    <a href="/Cuenta/Index">@User.Claims.FirstOrDefault().Value</a>
+                    <a>@User.Claims.FirstOrDefault().Value</a>
                 }
             </nav>
         </div>
@@ -46,36 +49,35 @@
     <!--.barra-->
     <!--.Contenido-->
 
-    <div class="seccion contenedor">
-        <div class="form-group mb-2">
-            <input style="background-size:cover; " type="search" name="search" value="@ViewBag.Buscar">
-            <button class="button jhan" type="submit"><i class="fa fa-search" aria-hidden="true"></i> Buscar</button>
-        </div>
-    </div>
+    <section class="seccion contenedor">
 
-    <section class="invitados contenedor seccion">
-        @if (ViewBag.Usuario != "LanRhXXX")
-        {
-            <a href="/ponente/registrar" class="button hollow"> Registrar Ponente</a>
-        }
-        <h2>Nuestros conferencistas</h2>
-        <ul class="lista-invitados clearfix">
-            @foreach (var item in ponentes)
+        <h2>Mi Cuenta</h2>
+        <h4>Monto total: @string.Format("{0:N2}", ViewBag.Total) S./</h4>
+        <br />
+        <br />
+        <br />
+
+        <div class="modal-cuenta">
+            <div class="col-12 user-img">
+                <img src="/img/Cuenta.jpg" />
+            </div>
+            @foreach (var item in cuentitas)
             {
-                <li>
-                    <div class="invitado">
-                        <a class="invitado-info" href="/Ponente/detalle?idPonente=@item.Id">
-                            <img width="346" height="230" src="@item.Imagen" alt="Imagen invitado">
-                            <p>@item.NomApe</p>
-                        </a>
-                    </div>
-                    <!-- END .invitado -->
-                </li>
+                <p class="text-white">Tipo de cuenta: @item.Type</p>
+
+                <p class="text-white">Nombre de la cuenta: @item.Name</p>
+
+                <p class="text-white">Divisa: @item.Currency</p>
+
+                <p class="text-white">
+                    <a class="button-Cuenta" href="/Cuenta/transaccion?id=@item.Id">Transacciones</a>
+                </p>
+                <br />
+                <br />
             }
-        </ul>
-        <!-- END lista-invitados -->
+        </div>
+
     </section>
-    <!-- END .invitados -->
 
     <footer class="site-footer">
         <div class="contenedor clearfix">
@@ -89,7 +91,7 @@
 
             <div class="ultimos-tweets">
                 <h3>Últimos <span>tweets</span></h3>
-                <a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#fe4918" href="https://twitter.com/JhanCarlosI">Tweets by </a>
+                <a class="twitter-timeline" data-height="400" data-theme="light" data-link-color="#fe4918" href="https://twitter.com/JhanCarlosI">Tweets by</a>
                 <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
             </div>
 
@@ -97,9 +99,9 @@
                 <h3>Redes <span>sociales</span></h3>
                 <nav class="redes-sociales">
                     <a href="https://www.facebook.com/Gold-Conference-Online-101111435084124/"><i class="fa fa-facebook"></i></a>
-                    <a href="https://twitter.com/"><i class="fa fa-twitter"></i></a>
-                    <a href="https://www.youtube.com/"><i class="fa fa-youtube-play"></i></a>
-                    <a href="https://www.instagram.com/"><i class="fa fa-instagram"></i></a>
+                    <a href="https://twitter.com/gold_conference"><i class="fa fa-twitter"></i></a>
+                    <a href="https://www.youtube.com/channel/UCVbYnjINFhIA_qLPC9zAa8Q"><i class="fa fa-youtube-play"></i></a>
+                    <a href="https://www.instagram.com/GOLDCONF_/"><i class="fa fa-instagram"></i></a>
                 </nav>
             </div>
         </div>
@@ -109,9 +111,8 @@
         </p>
 
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
     <script src="https://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="/js/Nuestro.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </body>

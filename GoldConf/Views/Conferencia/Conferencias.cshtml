@@ -3,6 +3,8 @@
     var compras = (List<Comprar>)ViewBag.Compra;
     bool estado = false;
     int presentes = 0;
+    var cuenta = (List<Cuenta>)ViewBag.Cuenta;
+    int cuentaNum = cuenta.Count();
 }
 
 <link href="/css/Detalle.css" rel="stylesheet" />
@@ -42,7 +44,7 @@
                 @if (User.Identity.IsAuthenticated)
                 {
                     <a href="/Auth/Logout"><i class="fa fa-power-off" aria-hidden="true"></i></a>
-                    <a href="/#">@User.Claims.FirstOrDefault().Value</a>
+                    <a href="/Cuenta/Index">@User.Claims.FirstOrDefault().Value</a>
                 }
             </nav>
         </div>
@@ -120,16 +122,26 @@
                         }
                         else
                         {
-                            @if (estado)
+                            if (cuentaNum > 0)
                             {
-                                <a href="#" class="button-green hollow">Conferencia comprada</a>
-                                estado = false;
-                                presentes = 0;
+                                if (estado)
+                                {
+                                    <a href="#" class="button-green hollow">Conferencia comprada</a>
+                                    estado = false;
+                                    presentes = 0;
+                                }
+                                else
+                                {
+                                    foreach (var cuen in cuenta)
+                                    {
+                                        <a href="#" class="button hollow" onclick="Registrar(@item.Id,'@item.TituloConf',@item.PrecioConf,@cuen.Amount)">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
+                                        presentes = 0;
+                                    }
+                                }
                             }
                             else
                             {
-                                <a href="#" class="button hollow" onclick="Registrar(@item.Id,'@item.TituloConf')">@string.Format("{0:N2}", item.PrecioConf) S/.</a>
-                                presentes = 0;
+                                <a href="/Cuenta/Crear" class="button hollow">Empezar a comprar</a>
                             }
                         }
                     </div>
@@ -177,8 +189,10 @@
 </body>
 
 <script>
-    function Registrar(idF,titulo) {
-        var dataString = "idF=" + idF;
+    function Registrar(idF, titulo, monto, saldo) {
+
+        var dataString = "idF=" + idF + "&titulo=" + titulo + "&monto=" + monto;
+
         Swal.fire({
             title: '¿Estás seguro?',
             text: "Estás por comprar la conferencia " + titulo,
@@ -188,7 +202,7 @@
             cancelButtonColor: '#d33',
             confirmButtonText: 'Si, comprar!'
         }).then((result) => {
-            if (result.isConfirmed) {
+            if (result.isConfirmed && saldo >= monto) {
                 $.ajax({
                     url: "/conferencia/comprar",
                     type: "get",
@@ -199,7 +213,13 @@
                     'Se añadió a tu listas de conferencias',
                     'success'
                 )
+            } else {
+                Swal.fire(
+                    'Cancelado!',
+                    'No tiene suficiente saldo en su cuenta',
+                    'error'
+                )
             }
-        })
+        });
     }
 </script>

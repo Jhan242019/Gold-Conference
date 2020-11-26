@@ -13,6 +13,8 @@ namespace GoldConf.Models
         public DbSet<Conferencia> Conferencias { get; set; }
         public DbSet<Ponente> Ponentes { get; set; }
         public DbSet<Comprar> Compras { get; set; }
+        public DbSet<Cuenta> Cuentas { get; set; }
+        public DbSet<Transaccion> Transacciones { get; set; }
 
         public GoldConfContext(DbContextOptions<GoldConfContext> options)
            : base(options) { }
@@ -26,6 +28,8 @@ namespace GoldConf.Models
             modelBuilder.ApplyConfiguration(new ConferenciaMap());
             modelBuilder.ApplyConfiguration(new PonenteMap());
             modelBuilder.ApplyConfiguration(new ComprarMap());
+            modelBuilder.ApplyConfiguration(new CuentaMap());
+            modelBuilder.ApplyConfiguration(new TransaccionMap());
 
         }
     }

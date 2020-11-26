@@ -1,7 +1,7 @@
-﻿@{ var usuario = (User)Model; }
+﻿@{ var cuenta = (Cuenta)Model; }
 
 <head>
-    <title>Crear Cuenta</title>
+    <title>Registrar</title>
 
     <!--JQUERY-->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -40,33 +40,41 @@
                         <div class="col-12 user-img">
                             <img src="/img/user.png" />
                         </div>
-                        <form action="/auth/registrar" class="col-12" method="post">
+                        <form action="/Cuenta/Crear" class="col-12" method="post">
 
-                            <div class="form-group" id="user-group">
-                                <input type="text" class="form-control" placeholder="Nombre y Apellido" name="NomApe" />
-                                <p class="text-white">@Html.ValidationMessage("NomApe")</p>
+                            <div class="form-group">
+                                <select name="Type" class="form-control">
+                                    <option value="">-- Tipo de cuenta --</option>
+                                    @foreach (var item in ViewBag.Types)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
+                                @Html.ValidationMessage("Type")
                             </div>
 
-                            <div class="form-group" id="user-group">
-                                <input type="email" class="form-control" placeholder="Email" name="email" />
-                                <p class="text-white">@Html.ValidationMessage("Email")</p>
+                            <div class="form-group">
+                                <input class="form-control" name="Name" value="@cuenta.Name" placeholder="Nombre de cuenta"/>
+                                @Html.ValidationMessage("Name")
                             </div>
 
-                            <div class="form-group" id="user-group">
-                                <input type="text" class="form-control" placeholder="Nombre de Usuario" name="Username" />
-                                <p class="text-white">@Html.ValidationMessage("Username")</p>
+                            <div class="form-group">
+                                <select name="Currency" class="form-control">
+                                    <option value="">-- Divisa de cuenta --</option>
+                                    @foreach (var item in ViewBag.Currency)
+                                    {
+                                        <option value="@item">@item</option>
+                                    }
+                                </select>
+                                @Html.ValidationMessage("Currency")
                             </div>
 
-                            <div class="form-group" id="contrasena-group">
-                                <input type="password" class="form-control" placeholder="Contraseña" name="password" />
-                                <p class="text-white">@Html.ValidationMessage("password")</p>
+                            <div class="form-group">
+                                <input class="form-control" name="Amount" value="@cuenta.Amount" />
+                                @Html.ValidationMessage("Amount")
                             </div>
 
-                            <div class="form-group" id="contrasena-group">
-                                <input type="password" class="form-control" placeholder="Confirmar Contraseña" name="passwordConf" />
-                            </div>
-
-                            <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Registrar </button>
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Crear Cuenta </button>
                         </form>
                     </div>
                 </div>
