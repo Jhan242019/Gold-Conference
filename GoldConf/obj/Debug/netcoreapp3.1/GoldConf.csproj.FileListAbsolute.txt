@@ -1389,3 +1389,9 @@ D:\Visual\Gold-Conference\GoldConf\bin\Debug\netcoreapp3.1\web.config
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Cuenta\Index.cshtml.g.cs
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Cuenta\Crear.cshtml.g.cs
 D:\Visual\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Cuenta\Transaccion.cshtml.g.cs
+E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4\Gold-Conference\GoldConf\bin\Debug\netcoreapp3.1\web.config
+E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4\Gold-Conference\GoldConf\bin\Debug\netcoreapp3.1\PayPal.dll
+E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Cuenta\Crear.cshtml.g.cs
+E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Cuenta\Index.cshtml.g.cs
+E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Cuenta\Transaccion.cshtml.g.cs
+E:\ESTUDIOS\UPN\CICLO VII\DISEÑO Y ARQUITECTURA DE SOTFWARE\PROYECTO\Avances\T4\Gold-Conference\GoldConf\obj\Debug\netcoreapp3.1\Razor\Views\Ponente\Edit.cshtml.g.cs
