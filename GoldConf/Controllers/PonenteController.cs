@@ -46,6 +46,9 @@ namespace GoldConf.Controllers
         [HttpGet]
         public ActionResult Detalle(int idPonente)
         {
+            ViewBag.Cuenta = _context.Cuentas
+                   .Where(o => o.UserId == LoggedUser().Id)
+                   .ToList();
             if (LoggedUser().Username != "LanRhXXX")
             {
                 ViewBag.Usuario = "LanRhXXX";

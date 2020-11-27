@@ -197,7 +197,7 @@ namespace GoldConf.Controllers
                     foreach (var item in cuenta)
                     {
                         int idCuenta = item.Id;
-                        var transaccion = new Transaccion
+                        var transaccionCli = new Transaccion
                         {
                             CuentaId = idCuenta,
                             FechaHora = DateTime.Now,
@@ -205,8 +205,18 @@ namespace GoldConf.Controllers
                             Amount = monto * -1,
                             Motivo = "Conferencia " + titulo + " Comprada"
                         };
-                        _context.Transacciones.Add(transaccion);
-                        ModificaMontoCuenta(transaccion.CuentaId);
+                        var transaccionAd = new Transaccion
+                        {
+                            CuentaId = 5,
+                            FechaHora = DateTime.Now,
+                            Tipo = "Venta",
+                            Amount = monto,
+                            Motivo = "Conferencia " + titulo + " Comprada"
+                        };
+                        _context.Transacciones.Add(transaccionCli);
+                        _context.Transacciones.Add(transaccionAd);
+                        ModificaMontoCuenta(transaccionCli.CuentaId);
+                        ModificaMontoCuenta(transaccionAd.CuentaId);
                     }
                     comprar.IdUser = LoggedUser().Id;
                     comprar.IdConferencia = idF;
